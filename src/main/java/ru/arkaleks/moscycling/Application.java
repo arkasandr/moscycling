@@ -22,10 +22,9 @@ public class Application {
                 new URL("https://apidata.mos.ru/v1/datasets/897/rows?$top=2&api_key=10d4289dc1d35470807639f4a045528b"),
                 new TypeReference<List<CyclePath>>() {});
         for(CyclePath c: path) {
-            System.out.println(c.toString());
             System.out.println(c.getGlobal_id());
             System.out.println(c.getNumber());
-            System.out.println(c.getCells());
+//            System.out.println(c.getCells());
         }
         } catch (IOException e) {
             e.printStackTrace();
