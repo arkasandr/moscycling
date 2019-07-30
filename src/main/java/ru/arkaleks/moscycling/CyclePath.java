@@ -9,6 +9,16 @@ public class CyclePath {
 
     private int global_id;
     private int number;
+    private Cells cells;
+
+    @JsonProperty("Cells")
+    public Cells getCells() {
+        return cells;
+    }
+
+    public void setCells(Cells cells) {
+        this.cells = cells;
+    }
 
     public int getGlobal_id() {
         return global_id;

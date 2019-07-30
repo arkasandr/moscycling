@@ -24,7 +24,9 @@ public class Application {
         for(CyclePath c: path) {
             System.out.println(c.getGlobal_id());
             System.out.println(c.getNumber());
-//            System.out.println(c.getCells());
+            System.out.println(c.getCells().getCell_id());
+            System.out.println(c.getCells().getName());
+            System.out.println(c.getCells().getObjectOperOrgPhone());
         }
         } catch (IOException e) {
             e.printStackTrace();
