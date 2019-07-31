@@ -27,6 +27,12 @@ public class Application {
             System.out.println(c.getCells().getCell_id());
             System.out.println(c.getCells().getName());
             System.out.println(c.getCells().getObjectOperOrgPhone());
+            for(int i = 0; i < c.getCells().getType().length; i++){
+                System.out.println(c.getCells().getType()[i]);
+            }
+            System.out.println(c.getCells().getWidth());
+            System.out.println(c.getCells().getLocation());
+
         }
         } catch (IOException e) {
             e.printStackTrace();
