@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CyclePathConvert {
@@ -28,33 +29,9 @@ public class CyclePathConvert {
         try {
             ObjectMapper mapper = new ObjectMapper();
             result = mapper.readValue(
-                    new URL("https://apidata.mos.ru/v1/datasets/897/rows?$top=2&api_key=10d4289dc1d35470807639f4a045528b"),
+                    new URL("https://apidata.mos.ru/v1/datasets/897/rows?$top=37&api_key=10d4289dc1d35470807639f4a045528b"),
                     new TypeReference<List<CyclePath>>() {
                     });
-//                System.out.println(c.getNumber());
-//                System.out.println(c.getCells().getCell_id());
-//
-//
-//                System.out.println(c.getCells().getObjectOperOrgPhone());
-//                for (int i = 0; i < c.getCells().getType().length; i++) {
-//                    System.out.println(c.getCells().getType()[i]);
-//                }
-//                System.out.println(c.getCells().getWidth());
-//                System.out.println(c.getCells().getLocation());
-//
-//                for (int i = 0; i < c.getCells().getGeoData().getCoordinates().length; i++) {
-//                    for (int k = 0; k < c.getCells().getGeoData().getCoordinates()[i].length; k++) {
-//                        for (int l = 0; l < c.getCells().getGeoData().getCoordinates()[i][k].length; l++) {
-//                            System.out.println(c.getCells().getGeoData().getCoordinates()[i][k][l]);
-//                        }
-//                    }
-//                }
-//
-//                System.out.println(c.getCells().getDepartamentalAffiliation());
-//                System.out.println(c.getCells().getOperOrgName());
-//                System.out.println(c.getCells().getPortionName());
-
- //           }
         } catch (
                 IOException e) {
             e.printStackTrace();
@@ -65,6 +42,7 @@ public class CyclePathConvert {
     public double maxCyclePathWidth(List<CyclePath> list) {
         double result = 0;
         List<Double> coordinates = new ArrayList<>();
+        List<Double> temp = new ArrayList<>();
         for (CyclePath c : list) {
             for (int i = 0; i < c.getCells().getGeoData().getCoordinates().length; i++) {
                 for (int k = 0; k < c.getCells().getGeoData().getCoordinates()[i].length; k++) {
@@ -76,10 +54,13 @@ public class CyclePathConvert {
         }
         Double[] coor = new Double [coordinates.size()];
         coordinates.toArray(coor);
-        for (int i = 0; i < coor.length; i++) {
+        for (int i = 0; i < coor.length-2; i++) {
             double length;
-            length = Math.sqrt((Math.pow((coor[i+2] - coor[i], 2)) + ))
+            length = Math.sqrt((Math.pow((coor[i+2] - coor[i]), 2)) + (Math.pow((coor[i +3] - coor[i + 1]), 2)));
+            temp.add(length);
+            i = i + 1;
         }
+        result = Collections.max(temp);
         return result;
         }
     }

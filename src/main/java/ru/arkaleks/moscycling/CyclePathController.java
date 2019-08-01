@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class CyclePathController {
 
-   @RequestMapping(method = RequestMethod.GET, value ="/cyclepath/all", produces = MediaType.APPLICATION_JSON_VALUE)
-   public List<CyclePath> getAllCyclePath(){
-       return CyclePathConvert.getInstance().cyclePathConvert();
-   }
+    @RequestMapping(method = RequestMethod.GET, value = "/cyclepath/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<CyclePath> getAllCyclePath() {
+        return CyclePathConvert.getInstance().cyclePathConvert();
+    }
 
-    @RequestMapping(method = RequestMethod.GET, value ="/cyclepath/id", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, value = "/cyclepath/id", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Integer> getAllCyclePathId() {
         List<Integer> result = new ArrayList<>();
         List<CyclePath> temp = CyclePathConvert.getInstance().cyclePathConvert();
@@ -24,15 +24,12 @@ public class CyclePathController {
         return result;
     }
 
-        @RequestMapping(method = RequestMethod.GET, value ="/cyclepath/length", produces = MediaType.APPLICATION_JSON_VALUE)
-        public List<Integer> getAllCyclePathLength() {
-            List<Double> result = new ArrayList<>();
-            List<Double> coordinates = new ArrayList<>();
-            List<CyclePath> temp = CyclePathConvert.getInstance().cyclePathConvert();
-            for (CyclePath cp : temp) {
-                coordinates.add(cp.getCells());
-            }
-            return result;
-        }
+    @RequestMapping(method = RequestMethod.GET, value = "/cyclepath/maxlength", produces = MediaType.APPLICATION_JSON_VALUE)
+    public double getMaxCyclePathLength() {
+        double result;
+        List<CyclePath> temp = CyclePathConvert.getInstance().cyclePathConvert();
+        result = CyclePathConvert.getInstance().maxCyclePathWidth(temp);
+        return result;
+    }
 
 }
