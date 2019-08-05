@@ -60,44 +60,44 @@ public class CyclePathConvert {
         return result;
     }
 
-    /**
-     * Метод определяет максимальную длину CyclePath
-     * @param
-     * @return Double
-     * @throws IOException
-     */
-    public double maxCyclePathLength(List<CyclePath> list) {
-        double result;
-        List<Double> sum = new ArrayList<>();
-        for (CyclePath c : list) {
-            List<Double> coordinates = new ArrayList<>();
-            double cyclePathSum = 0;
-            for (int i = 0; i < c.getCells().getGeoData().getCoordinates().length; i++) {
-                List<Double> temp = new ArrayList<>();
-                for (int k = 0; k < c.getCells().getGeoData().getCoordinates()[i].length; k++) {
-                    for (int l = 0; l < c.getCells().getGeoData().getCoordinates()[i][k].length; l++) {
-                        coordinates.add(c.getCells().getGeoData().getCoordinates()[i][k][l]);
-                    }
-                    double lensum = 0;
-                    Double[] coor = new Double[coordinates.size()];
-                    coordinates.toArray(coor);
-                    for (int m = 0; m < coor.length - 2; m++) {
-                        double length;
-                        length = 2 * 6371 * asin(Math.sqrt(Math.pow((sin(((coor[m + 3]) * PI / 180
-                                - (coor[m + 1] * PI / 180)) / 2)), 2) + cos((coor[m + 1]) * PI / 180)
-                                *  cos((coor[m + 3]) * PI / 180) * (Math.pow((sin(((coor[m + 2]) * PI / 180
-                                - (coor[m] * PI / 180)) / 2)), 2))));
-                        lensum = lensum + length;
-                        m = m + 1;
-                    }
-                    temp.add(lensum);
-                    cyclePathSum = temp.get(temp.size() - 1);
-                }
-            }
-            sum.add(cyclePathSum);
-        }
-        result = Collections.max(sum);
-        return result;
-    }
+//    /**
+//     * Метод определяет максимальную длину CyclePath
+//     * @param
+//     * @return Double
+//     * @throws IOException
+//     */
+//    public double maxCyclePathLength(List<CyclePath> list) {
+//        double result;
+//        List<Double> sum = new ArrayList<>();
+//        for (CyclePath c : list) {
+//            List<Double> coordinates = new ArrayList<>();
+//            double cyclePathSum = 0;
+//            for (int i = 0; i < c.getCells().getGeoData().getCoordinates().length; i++) {
+//                List<Double> temp = new ArrayList<>();
+//                for (int k = 0; k < c.getCells().getGeoData().getCoordinates()[i].length; k++) {
+//                    for (int l = 0; l < c.getCells().getGeoData().getCoordinates()[i][k].length; l++) {
+//                        coordinates.add(c.getCells().getGeoData().getCoordinates()[i][k][l]);
+//                    }
+//                    double lensum = 0;
+//                    Double[] coor = new Double[coordinates.size()];
+//                    coordinates.toArray(coor);
+//                    for (int m = 0; m < coor.length - 2; m++) {
+//                        double length;
+//                        length = 2 * 6371 * asin(Math.sqrt(Math.pow((sin(((coor[m + 3]) * PI / 180
+//                                - (coor[m + 1] * PI / 180)) / 2)), 2) + cos((coor[m + 1]) * PI / 180)
+//                                *  cos((coor[m + 3]) * PI / 180) * (Math.pow((sin(((coor[m + 2]) * PI / 180
+//                                - (coor[m] * PI / 180)) / 2)), 2))));
+//                        lensum = lensum + length;
+//                        m = m + 1;
+//                    }
+//                    temp.add(lensum);
+//                    cyclePathSum = temp.get(temp.size() - 1);
+//                }
+//            }
+//            sum.add(cyclePathSum);
+//        }
+//        result = Collections.max(sum);
+//        return result;
+//    }
 }
 
