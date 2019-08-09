@@ -30,7 +30,7 @@ public class CyclePath {
 //    }
 
     @Id
-    @Column(name = "GLOBAL_ID", updatable=false, nullable=false)
+    @Column(name = "GLOBAL_ID", updatable = false, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int globalId;
     private int number;

@@ -17,12 +17,12 @@ import javax.persistence.*;
 public class Cells {
 
     @Id
-    @Column(name = "GLOBAL_ID", updatable=false, nullable=false)
+    @Column(name = "GLOBAL_ID", updatable = false, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int globalId;
     private String name;
     private String objectOperOrgPhone;
-    @Column( length = 1000000000 )
+    @Column(length = 1000000000)
     private String[] type;
     private double width;
     private String location;

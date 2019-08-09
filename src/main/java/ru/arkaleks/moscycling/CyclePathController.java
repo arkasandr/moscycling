@@ -5,7 +5,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import static java.lang.Math.*;
@@ -57,10 +56,18 @@ public class CyclePathController {
      * @throws CyclePathNotFoundException
      */
     @GetMapping("/cyclepath/{globalId}")
-    CyclePath findOne(@PathVariable int globalId) {
-        return repository.findById(globalId)
-                .orElseThrow(() -> new CyclePathNotFoundException(globalId));
+    Optional findOne(@PathVariable int globalId) {
+        return repository.findById(globalId);
+//                .orElseThrow(() -> new CyclePathNotFoundException(globalId));
     }
+
+//    @GetMapping("/cyclepath/{globalId}")
+//    public String findOne(@PathVariable ("globalId") int globalId, Model model) {
+//        CyclePath path = repository.findById(globalId)
+//                .orElseThrow(() -> new CyclePathNotFoundException(globalId));
+//        model.addAttribute("path", path);
+//        return "find-path";
+//    }
 
     /**
      * Метод определяет максимальную длину велодорожки CyclePath
@@ -75,6 +82,7 @@ public class CyclePathController {
                 .mapToDouble(x -> getCycleLength(x))
                 .max();
     }
+
 
     /**
      * Метод определяет минимальную длину велодорожки CyclePath

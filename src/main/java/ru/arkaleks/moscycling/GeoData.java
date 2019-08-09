@@ -17,11 +17,11 @@ import javax.persistence.*;
 public class GeoData {
 
     @Id
-    @Column(name = "GLOBAL_ID", updatable=false, nullable=false)
+    @Column(name = "GLOBAL_ID", updatable = false, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int globalId;
     private String type;
-    @Column( length = 1000000000 )
+    @Column(length = 1000000000)
     private double[][][] coordinates;
 
     @JsonProperty("Type")
