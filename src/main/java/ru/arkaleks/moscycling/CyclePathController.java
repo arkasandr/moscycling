@@ -23,11 +23,12 @@ public class CyclePathController {
     @Autowired
     private CyclePathRepository repository;
 
+
     /**
      * Метод находит все велодорожки CyclePath
      * @param
-     * @return CyclePath
-     * @throws IOException
+     * @return List</CyclePath>
+     * @throws
      */
     @GetMapping("/cyclepath/allpath")
     public List<CyclePath> getAllCyclePath() {
@@ -38,7 +39,7 @@ public class CyclePathController {
      * Метод находит все id велодорожек CyclePath
      * @param
      * @return List<Integer>
-     * @throws IOException
+     * @throws
      */
     @GetMapping("/cyclepath/allid")
     public List<Integer> getAllCyclePathId() {
@@ -53,19 +54,19 @@ public class CyclePathController {
      * Метод находит велодорожку по id
      * @param
      * @return CyclePath
-     * @throws IOException
+     * @throws CyclePathNotFoundException
      */
     @GetMapping("/cyclepath/{globalId}")
-    Optional findOne(@PathVariable Integer globalId) {
-        return repository.findById(globalId);
-       //         .orElseThrow(() -> new BookNotFoundException(id));
+    CyclePath findOne(@PathVariable int globalId) {
+        return repository.findById(globalId)
+                .orElseThrow(() -> new CyclePathNotFoundException(globalId));
     }
 
     /**
      * Метод определяет максимальную длину велодорожки CyclePath
      * @param
      * @return Double
-     * @throws IOException
+     * @throws
      */
     @GetMapping("/cyclepath/maxlength")
     public OptionalDouble getMaxPath() {
@@ -90,14 +91,13 @@ public class CyclePathController {
     }
 
 
-
     /**
      * Метод сохраняет или обновляет велодорожку CyclePath
      * @param
-     * @return Double
-     * @throws IOException
+     * @return CyclePath
+     * @throws
      */
-    @PutMapping("/cyclepath/{id}")
+    @PutMapping("/cyclepath/{globalId}")
     CyclePath saveOrUpdate(@RequestBody CyclePath newPath, @PathVariable Integer globalId) {
 
         return repository.findById(globalId)
@@ -112,20 +112,47 @@ public class CyclePathController {
                 });
     }
 
-    //  save all
-    //return 201 instead of 200
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @PostMapping("/cyclepath/saveall"
-//    @PostMapping(value = "/cyclepath/saveall", produces = MediaType.APPLICATION_JSON_VALUE)
-//    CyclePath newPath(CyclePath newPath) {
-//        return repository.save(newPath);
-//    }
+    /**
+     * Метод обновляет только поле "Number" велодорожки CyclePath
+     * @param
+     * @return CyclePath
+     * @throws
+     */
+    @PatchMapping("/cyclepath/{globalId}")
+    CyclePath patch(@RequestBody Map<String, Integer> update, @PathVariable Integer globalId) {
+        return repository.findById(globalId)
+                .map(x -> {
+                    int upNumber = update.get("Number");
+                    if (upNumber != 0) {
+                        x.setNumber(upNumber);
+                        return repository.save(x);
+                    } else {
+                        throw new CyclePathUnSupportedFieldPatchException(update.keySet());
+                    }
+                })
+                .orElseGet(() -> {
+                  throw new CyclePathNotFoundException(globalId);
+                });
+    }
+
+    /**
+     * Метод удаляет велодорожку CyclePath
+     * @param
+     * @return Double
+     * @throws
+     */
+
+    @DeleteMapping("cyclepath/{globalId}")
+    void deletePath(@PathVariable int globalId) {
+        repository.deleteById(globalId);
+    }
+
 
     /**
      * Метод определяет длину велодорожки CyclePath
      * @param
      * @return Double
-     * @throws IOException
+     * @throws
      */
     public double getCycleLength(CyclePath cyclePath) {
         double result = 0;
