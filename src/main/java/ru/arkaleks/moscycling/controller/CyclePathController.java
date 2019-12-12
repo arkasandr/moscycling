@@ -1,11 +1,12 @@
-package ru.arkaleks.moscycling;
+package ru.arkaleks.moscycling.controller;
 
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.arkaleks.moscycling.model.CyclePath;
+import ru.arkaleks.moscycling.repository.CyclePathRepository;
 
 import static java.lang.Math.*;
 import static java.lang.Math.PI;
@@ -19,9 +20,12 @@ import static java.lang.Math.PI;
 @RestController
 public class CyclePathController {
 
-    @Autowired
+
     private CyclePathRepository repository;
 
+    public CyclePathController(CyclePathRepository repository) {
+        this.repository = repository;
+    }
 
     /**
      * Метод находит все велодорожки CyclePath
@@ -56,18 +60,10 @@ public class CyclePathController {
      * @throws CyclePathNotFoundException
      */
     @GetMapping("/cyclepath/{globalId}")
-    Optional findOne(@PathVariable int globalId) {
-        return repository.findById(globalId);
-//                .orElseThrow(() -> new CyclePathNotFoundException(globalId));
+    CyclePath findOne(@PathVariable int globalId) {
+        return repository.findById(globalId)
+                .orElseThrow(() -> new CyclePathNotFoundException(globalId));
     }
-
-//    @GetMapping("/cyclepath/{globalId}")
-//    public String findOne(@PathVariable ("globalId") int globalId, Model model) {
-//        CyclePath path = repository.findById(globalId)
-//                .orElseThrow(() -> new CyclePathNotFoundException(globalId));
-//        model.addAttribute("path", path);
-//        return "find-path";
-//    }
 
     /**
      * Метод определяет максимальную длину велодорожки CyclePath

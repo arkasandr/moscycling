@@ -1,4 +1,4 @@
-package ru.arkaleks.moscycling;
+package ru.arkaleks.moscycling.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -27,7 +27,6 @@ public class Cells {
     private double width;
     private String location;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = GeoData.class)
-    //@JoinTable(name = "GEODATA", joinColumns = { @JoinColumn(name = "GLOBAL_ID") }, inverseJoinColumns = { @JoinColumn(name = "GLOBAL_ID") })
     private GeoData geoData;
     private String departamentalAffiliation;
     private String operOrgName;

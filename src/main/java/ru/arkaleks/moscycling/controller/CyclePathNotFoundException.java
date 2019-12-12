@@ -1,4 +1,4 @@
-package ru.arkaleks.moscycling;
+package ru.arkaleks.moscycling.controller;
 
 public class CyclePathNotFoundException extends RuntimeException {
 
