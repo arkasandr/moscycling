@@ -1,8 +1,7 @@
 package ru.arkaleks.moscycling.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import lombok.Getter;
+import lombok.Setter;
 import javax.persistence.*;
 
 /**
@@ -10,10 +9,13 @@ import javax.persistence.*;
  * @version $Id$
  * @since 0.1
  */
+
+@Getter
+@Setter
+
 @Entity
 @Table(name = "GEODATA")
 @Access(AccessType.FIELD)
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class GeoData {
 
     @Id
@@ -23,30 +25,4 @@ public class GeoData {
     private String type;
     @Column(length = 1000000000)
     private double[][][] coordinates;
-
-    @JsonProperty("Type")
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    @JsonProperty("coordinates")
-    public double[][][] getCoordinates() {
-        return coordinates;
-    }
-
-    public void setCoordinates(double[][][] coordinates) {
-        this.coordinates = coordinates;
-    }
-
-    public int getGlobalId() {
-        return globalId;
-    }
-
-    public void setGlobalId(int globalId) {
-        this.globalId = globalId;
-    }
 }

@@ -1,3 +1,5 @@
+api:
+  key: 10d4289dc1d35470807639f4a045528b
 spring:
   jpa:
     generate-ddl: true
@@ -15,3 +17,6 @@ spring:
     driver-class-name: org.postgresql.Driver
 server:
   port: 9090
+
+
+
