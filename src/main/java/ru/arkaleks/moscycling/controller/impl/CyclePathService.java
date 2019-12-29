@@ -35,7 +35,7 @@ public class CyclePathService {
         return mapper.mapToCyclePathDto(cyclePathRepository.findById(id)
                 .map(x -> {
                     x.setNumber(cyclePath.getNumber());
-                    x.setCells(cyclePath.getCells());
+                    x.setCell(cyclePath.getCell());
                     return cyclePathRepository.save(x);
                 })
                 .orElseGet(() -> {

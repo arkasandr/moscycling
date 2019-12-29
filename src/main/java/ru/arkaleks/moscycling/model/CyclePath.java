@@ -3,8 +3,8 @@ package ru.arkaleks.moscycling.model;
 import lombok.Getter;
 import lombok.Setter;
 
-
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Alex Arkashev (arkasandr@gmail.com)
@@ -25,6 +25,13 @@ public class CyclePath {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int globalId;
     private int number;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Cells.class)
-    private Cells cells;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Cell.class)
+    private List<Cell> cells;
+    private String name;
+    private String objectOperOrgPhone;
+    private Double width;
+    private String location;
+    private String departamentalAffiliation;
+    private String operOrgName;
+    private String portionName;
 }
