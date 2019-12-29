@@ -10,10 +10,10 @@ import java.util.List;
 @Mapper
 public interface CyclePathMapper {
 
-    CyclePathMapper INSTANCE = Mappers.getMapper(CyclePathMapper.class);
-
-    List<CyclePathDto> mapToCyclePathDtoList(List<CyclePath> cyclePathEntityList);
-
-    CyclePathDto mapToCyclePathDto(CyclePath cyclePathEntity);
+//    CyclePathMapper INSTANCE = Mappers.getMapper(CyclePathMapper.class);
+//
+//    List<CyclePathDto> mapToCyclePathDtoList(List<CyclePath> cyclePathEntityList);
+//
+//    CyclePathDto mapToCyclePathDto(CyclePath cyclePathEntity);
 
 }

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Alex Arkashev (arkasandr@gmail.com)
@@ -14,22 +15,16 @@ import javax.persistence.*;
 @Setter
 
 @Entity
-@Table(name = "CELLS")
+@Table(name = "CELL")
 @Access(AccessType.FIELD)
-public class Cells {
-
+public class Cell {
     @Id
     @Column(name = "GLOBAL_ID", updatable = false, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int globalId;
-    private String name;
-    private String objectOperOrgPhone;
-    private String[] type;
-    private double width;
-    private String location;
+    @Column(length = 1000000000)
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Type.class)
+    private List<Type> type;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = GeoData.class)
     private GeoData geoData;
-    private String departamentalAffiliation;
-    private String operOrgName;
-    private String portionName;
 }

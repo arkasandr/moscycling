@@ -1,7 +1,7 @@
 package ru.arkaleks.moscycling.model;
-
 import lombok.Getter;
 import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,21 +10,19 @@ import java.util.List;
  * @version $Id$
  * @since 0.1
  */
-
 @Getter
 @Setter
 
 @Entity
-@Table(name = "GEODATA")
+@Table(name = "DATALENGTH")
 @Access(AccessType.FIELD)
-public class GeoData {
-
+public class DataLength {
     @Id
     @Column(name = "GLOBAL_ID", updatable = false, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int globalId;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = DataLength.class)
-    @Column(length = 1000000000)
-    private List<DataLength> length;
+    private int pointNumber;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Coordinate.class)
+    private List<Coordinate> coors;
 
 }

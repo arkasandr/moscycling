@@ -1,15 +1,15 @@
 package ru.arkaleks.moscycling.service.dto;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GeoDataDtoJson {
+public class CoordinateDtoJson {
 
-//    @JsonProperty("global_id")
+ //   @JsonProperty("global_id")
     private int globalId;
-    private List<DataLengthDtoJson> length;
+    private Double coorX;
+    private Double coorY;
 }

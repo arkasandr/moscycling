@@ -1,6 +1,7 @@
 package ru.arkaleks.moscycling.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,7 @@ public class MosApiDataClient {
        List<CyclePathDtoJson> result = new ArrayList<>();
         try {
             ObjectMapper mapper = new ObjectMapper();
+           //mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             result = mapper.readValue(
                     new URL("https://apidata.mos.ru/v1/datasets/897/rows?api_key=" + apiKey + "&$top=136"),
                     new TypeReference<List<CyclePathDtoJson>>() {
