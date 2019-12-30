@@ -6,15 +6,15 @@ import ru.arkaleks.moscycling.model.CyclePath;
 import ru.arkaleks.moscycling.service.dto.CyclePathDtoJson;
 import ru.arkaleks.moscycling.service.mapper.CyclePathMapperJson;
 
-@RequiredArgsConstructor
-
-@Service
+//@RequiredArgsConstructor
+//
+//@Service
 public class CyclePathServiceJson {
 
-    private CyclePathMapperJson mapper = CyclePathMapperJson.INSTANCE;
-
-    public CyclePath saveCyclePathDtoToCyclePath(CyclePathDtoJson cyclePathDtoJson) {
-        return mapper.mapToCyclePath(cyclePathDtoJson);
-    }
+//    private CyclePathMapperJson mapper = CyclePathMapperJson.INSTANCE;
+//
+//    public CyclePath saveCyclePathDtoToCyclePath(CyclePathDtoJson cyclePathDtoJson) {
+//        return mapper.mapToCyclePath(cyclePathDtoJson);
+//    }
 
 }

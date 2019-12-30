@@ -9,10 +9,10 @@ import ru.arkaleks.moscycling.service.dto.CyclePathDtoJson;
 @Mapper
 public interface CyclePathMapperJson {
 
-    CyclePathMapperJson INSTANCE = Mappers.getMapper(CyclePathMapperJson.class);
-
-    CyclePathDtoJson mapToCyclePathDto(CyclePath cyclePathEntity);
-
-    CyclePath mapToCyclePath(CyclePathDtoJson cyclePathDtoJson);
+//    CyclePathMapperJson INSTANCE = Mappers.getMapper(CyclePathMapperJson.class);
+//
+//    CyclePathDtoJson mapToCyclePathDto(CyclePath cyclePathEntity);
+//
+//    CyclePath mapToCyclePath(CyclePathDtoJson cyclePathDtoJson);
 
 }

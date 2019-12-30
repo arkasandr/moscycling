@@ -37,28 +37,64 @@ public class MosApiDataClient {
      * @return List<CyclePathConvert>
      * @throws IOException
      */
+
+
+    public List<Coordinate> getCoorToList(CyclePathDtoJson cyclePathDtoJson, GeoDataDtoJson geoData) {
+        List<Coordinate> result = new ArrayList<>();
+        for (double[][] coor2 : geoData.getCoordinates()) {
+            for (double[] coor1 : coor2) {
+                Coordinate coordinate = new Coordinate();
+                coordinate.setCoorX(coor1[0]);
+                coordinate.setCoorY(coor1[1]);
+                coordinate.setGlobalId(cyclePathDtoJson.getGlobalId());
+                    result.add(coordinate);
+            }
+        }
+        return result;
+    }
+
+    public List<DataLength> getLengthToList(CyclePathDtoJson cyclePathDtoJson, List<Coordinate> coordinates) {
+        List<DataLength> result = new ArrayList<>();
+        for (int i = 0; i < coordinates.size(); i++) {
+                DataLength dataLength = new DataLength();
+                dataLength.setPointNumber(i);
+                dataLength.setCoors(coordinates);
+                dataLength.setGlobalId(cyclePathDtoJson.getGlobalId());
+                result.add(dataLength);
+        }
+        return result;
+    }
+
+    public List<Type> getTypeToList(CyclePathDtoJson cyclePathDtoJson) {
+        List<Type> result = new ArrayList<>();
+        String[] types = cyclePathDtoJson.getCells().getType();
+        for (int i = 0; i < types.length; i++) {
+            Type type = new Type();
+            type.setGlobalId(cyclePathDtoJson.getGlobalId());
+            type.setType(types[i]);
+            result.add(type);
+        }
+        return result;
+    }
+
     public List<CyclePath> getCyclePathDataFromOpenSource() {
-       List<CyclePathDtoJson> resultJson = new ArrayList<>();
+        List<CyclePathDtoJson> resultJson;
+        List<CyclePath> result = new ArrayList<>();
         try {
             ObjectMapper mapper = new ObjectMapper();
             resultJson = mapper.readValue(
                     new URL("https://apidata.mos.ru/v1/datasets/897/rows?api_key=" + apiKey + "&$top=136"),
                     new TypeReference<List<CyclePathDtoJson>>() {
                     });
-//
-//        List<CyclePath> result = resultJson.stream()
-//                .mapToInt(cp -> cp.getGlobalId())
-//                .mapToInt(cp -> cp.getNumber())
-
-
-            for(CyclePathDtoJson cp : resultJson) {
+            for (CyclePathDtoJson cp : resultJson) {
                 int id = cp.getGlobalId();
                 int number = cp.getNumber();
-                List<Coordinate> coordinates = new ArrayList<>();
-                coordinates.addAll(Arrays.asList(cp.getCells().getGeoData().getCoordinates()));
-                for(cp.getCells().getGeoData().getCoordinates())
-                coordinates
-                new Cell(cp.getCells().getGlobalId(), List<Type> type = new ArrayList<>(cp.getCells().getType(), cp.getCells().getGeoData());
+                List<Coordinate> coordinates = getCoorToList(cp, cp.getCells().getGeoData());
+                List<Type> types = getTypeToList(cp);
+                List<DataLength> length = getLengthToList(cp, coordinates);
+                Cell cells = new Cell(id, getTypeToList(cp), new GeoData(id, length));
+                List<Cell> cell = new ArrayList<>();
+                cell.add(cells);
                 String name = cp.getCells().getName();
                 String oop = cp.getCells().getObjectOperOrgPhone();
                 Double width = cp.getCells().getWidth();
@@ -66,7 +102,10 @@ public class MosApiDataClient {
                 String dep = cp.getCells().getDepartamentalAffiliation();
                 String operOrgName = cp.getCells().getOperOrgName();
                 String portionName = cp.getCells().getPortionName();
-                CyclePath cyclePath = new CyclePath(id, number, cells,)
+                CyclePath cyclePath = new CyclePath(id, number, cell,
+                        name, oop, width, location, dep, operOrgName, portionName);
+                System.out.println(cyclePath.getNumber());
+                result.add(cyclePath);
             }
 
         } catch (
@@ -76,18 +115,5 @@ public class MosApiDataClient {
         return result;
     }
 
-    public List<Coordinate> getCoortoList(GeoDataDtoJson geoData) {
-        List<Coordinate> result = new ArrayList<>();
-        List<double> result1 = new ArrayList<>();
-        for (double[][] coor2 : geoData.getCoordinates()){
-            for (double[] coor1 : coor2) {
-                Coordinate coordinate = new Coordinate();
-                coordinate
-                    result1.addAll(Arrays.asList(coor1));
-            }
-        }
-
-        return result;
-    }
 }
 

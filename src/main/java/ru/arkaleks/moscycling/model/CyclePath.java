@@ -1,6 +1,8 @@
 package ru.arkaleks.moscycling.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -15,6 +17,8 @@ import java.util.List;
 @Getter
 @Setter
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "CYCLEPATH")
 @Access(AccessType.FIELD)
@@ -26,7 +30,7 @@ public class CyclePath {
     private int globalId;
     private int number;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Cell.class)
-    private List<Cell> cells;
+    private List<Cell> cell;
     private String name;
     private String objectOperOrgPhone;
     private Double width;
