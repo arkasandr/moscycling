@@ -25,4 +25,12 @@ public class Type {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int globalId;
     private  String type;
+
+    @Override
+    public String toString() {
+        return "Type{" +
+                "globalId=" + globalId +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

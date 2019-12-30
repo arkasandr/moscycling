@@ -12,6 +12,6 @@ public class CyclePathDtoJson {
     private int globalId;
     @JsonProperty("Number")
     private int number;
-    @JsonProperty("Cell")
+    @JsonProperty("Cells")
     private CellsDtoJson cells;
 }

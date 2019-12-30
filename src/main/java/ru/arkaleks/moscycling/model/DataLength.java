@@ -27,6 +27,15 @@ public class DataLength {
     private int globalId;
     private int pointNumber;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Coordinate.class)
+    @JoinColumn(name="COORDINATE_ID")
     private List<Coordinate> coors;
 
+    @Override
+    public String toString() {
+        return "DataLength{" +
+                "globalId=" + globalId +
+                ", pointNumber=" + pointNumber +
+                ", coors=" + coors +
+                '}';
+    }
 }

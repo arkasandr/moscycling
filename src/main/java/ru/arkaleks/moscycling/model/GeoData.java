@@ -31,4 +31,11 @@ public class GeoData {
     @Column(length = 1000000000)
     private List<DataLength> length;
 
+    @Override
+    public String toString() {
+        return "GeoData{" +
+                "globalId=" + globalId +
+                ", length=" + length +
+                '}';
+    }
 }

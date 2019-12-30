@@ -33,9 +33,25 @@ public class CyclePath {
     private List<Cell> cell;
     private String name;
     private String objectOperOrgPhone;
-    private Double width;
+    private double width;
     private String location;
     private String departamentalAffiliation;
     private String operOrgName;
     private String portionName;
+
+    @Override
+    public String toString() {
+        return "CyclePath{" +
+                "globalId=" + globalId +
+                ", number=" + number +
+                ", cell=" + cell +
+                ", name='" + name + '\'' +
+                ", objectOperOrgPhone='" + objectOperOrgPhone + '\'' +
+                ", width=" + width +
+                ", location='" + location + '\'' +
+                ", departamentalAffiliation='" + departamentalAffiliation + '\'' +
+                ", operOrgName='" + operOrgName + '\'' +
+                ", portionName='" + portionName + '\'' +
+                '}';
+    }
 }

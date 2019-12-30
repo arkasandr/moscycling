@@ -5,14 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.arkaleks.moscycling.model.*;
-import ru.arkaleks.moscycling.service.dto.CellsDtoJson;
 import ru.arkaleks.moscycling.service.dto.CyclePathDtoJson;
 import ru.arkaleks.moscycling.service.dto.GeoDataDtoJson;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -31,14 +29,12 @@ public class MosApiDataClient {
     }
 
     /**
-     * Метод осуществляет получение данных по заданному URL путем конвертации JSON в экземпляры класса MosApiDataClient
+     * Метод формирует список объектов List<Coordinate> из JSON объекта
      *
      * @param
-     * @return List<CyclePathConvert>
-     * @throws IOException
+     * @return List<Coordinate>
+     * @throws
      */
-
-
     public List<Coordinate> getCoorToList(CyclePathDtoJson cyclePathDtoJson, GeoDataDtoJson geoData) {
         List<Coordinate> result = new ArrayList<>();
         for (double[][] coor2 : geoData.getCoordinates()) {
@@ -46,25 +42,39 @@ public class MosApiDataClient {
                 Coordinate coordinate = new Coordinate();
                 coordinate.setCoorX(coor1[0]);
                 coordinate.setCoorY(coor1[1]);
-                coordinate.setGlobalId(cyclePathDtoJson.getGlobalId());
-                    result.add(coordinate);
+              //  coordinate.setId(cyclePathDtoJson.getGlobalId());
+                result.add(coordinate);
             }
         }
         return result;
     }
 
+    /**
+     * Метод формирует список объектов List<DataLength> из JSON объекта
+     *
+     * @param
+     * @return List<DataLength>
+     * @throws
+     */
     public List<DataLength> getLengthToList(CyclePathDtoJson cyclePathDtoJson, List<Coordinate> coordinates) {
         List<DataLength> result = new ArrayList<>();
         for (int i = 0; i < coordinates.size(); i++) {
-                DataLength dataLength = new DataLength();
-                dataLength.setPointNumber(i);
-                dataLength.setCoors(coordinates);
-                dataLength.setGlobalId(cyclePathDtoJson.getGlobalId());
-                result.add(dataLength);
+            DataLength dataLength = new DataLength();
+            dataLength.setPointNumber(i);
+            dataLength.setCoors(coordinates);
+            dataLength.setGlobalId(cyclePathDtoJson.getGlobalId());
+            result.add(dataLength);
         }
         return result;
     }
 
+    /**
+     * Метод формирует список объектов List<Type> из JSON объекта
+     *
+     * @param
+     * @return List<Type>
+     * @throws
+     */
     public List<Type> getTypeToList(CyclePathDtoJson cyclePathDtoJson) {
         List<Type> result = new ArrayList<>();
         String[] types = cyclePathDtoJson.getCells().getType();
@@ -77,6 +87,13 @@ public class MosApiDataClient {
         return result;
     }
 
+    /**
+     * Метод осуществляет получение данных по заданному URL путем конвертации JSON в Entity
+     *
+     * @param
+     * @return List<CyclePath>
+     * @throws IOException
+     */
     public List<CyclePath> getCyclePathDataFromOpenSource() {
         List<CyclePathDtoJson> resultJson;
         List<CyclePath> result = new ArrayList<>();
@@ -87,33 +104,31 @@ public class MosApiDataClient {
                     new TypeReference<List<CyclePathDtoJson>>() {
                     });
             for (CyclePathDtoJson cp : resultJson) {
+                System.out.println(cp);
                 int id = cp.getGlobalId();
                 int number = cp.getNumber();
                 List<Coordinate> coordinates = getCoorToList(cp, cp.getCells().getGeoData());
-                List<Type> types = getTypeToList(cp);
                 List<DataLength> length = getLengthToList(cp, coordinates);
-                Cell cells = new Cell(id, getTypeToList(cp), new GeoData(id, length));
-                List<Cell> cell = new ArrayList<>();
-                cell.add(cells);
+                Cell cell = new Cell(id, getTypeToList(cp), new GeoData(id, length));
+                List<Cell> cells = new ArrayList<>();
+                cells.add(cell);
                 String name = cp.getCells().getName();
                 String oop = cp.getCells().getObjectOperOrgPhone();
-                Double width = cp.getCells().getWidth();
+                double width = cp.getCells().getWidth();
                 String location = cp.getCells().getLocation();
                 String dep = cp.getCells().getDepartamentalAffiliation();
                 String operOrgName = cp.getCells().getOperOrgName();
                 String portionName = cp.getCells().getPortionName();
-                CyclePath cyclePath = new CyclePath(id, number, cell,
+                CyclePath cyclePath = new CyclePath(id, number, cells,
                         name, oop, width, location, dep, operOrgName, portionName);
-                System.out.println(cyclePath.getNumber());
+                System.out.println(cyclePath.toString());
                 result.add(cyclePath);
             }
-
         } catch (
                 IOException e) {
             e.printStackTrace();
         }
         return result;
     }
-
 }
 

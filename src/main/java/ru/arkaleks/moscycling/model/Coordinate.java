@@ -22,10 +22,9 @@ import javax.persistence.*;
 @Access(AccessType.FIELD)
 public class Coordinate {
     @Id
-    @Column(name = "GLOBAL_ID", updatable = false, nullable = false)
+    @Column(name = "COORDINATE_ID", updatable = false, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int globalId;
+ //  private int id;
     private double coorX;
     private double coorY;
-
 }
