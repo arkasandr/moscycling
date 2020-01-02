@@ -1,9 +1,6 @@
 package ru.arkaleks.moscycling.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,6 +13,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@ToString
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -39,19 +37,4 @@ public class CyclePath {
     private String operOrgName;
     private String portionName;
 
-    @Override
-    public String toString() {
-        return "CyclePath{" +
-                "globalId=" + globalId +
-                ", number=" + number +
-                ", cell=" + cell +
-                ", name='" + name + '\'' +
-                ", objectOperOrgPhone='" + objectOperOrgPhone + '\'' +
-                ", width=" + width +
-                ", location='" + location + '\'' +
-                ", departamentalAffiliation='" + departamentalAffiliation + '\'' +
-                ", operOrgName='" + operOrgName + '\'' +
-                ", portionName='" + portionName + '\'' +
-                '}';
-    }
 }

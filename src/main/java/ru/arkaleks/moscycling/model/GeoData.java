@@ -1,9 +1,7 @@
 package ru.arkaleks.moscycling.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,6 +13,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@ToString
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,11 +30,4 @@ public class GeoData {
     @Column(length = 1000000000)
     private List<DataLength> length;
 
-    @Override
-    public String toString() {
-        return "GeoData{" +
-                "globalId=" + globalId +
-                ", length=" + length +
-                '}';
-    }
 }

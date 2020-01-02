@@ -42,7 +42,7 @@ public class MosApiDataClient {
                 Coordinate coordinate = new Coordinate();
                 coordinate.setCoorX(coor1[0]);
                 coordinate.setCoorY(coor1[1]);
-              //  coordinate.setId(cyclePathDtoJson.getGlobalId());
+                coordinate.setGlobalId(cyclePathDtoJson.getGlobalId());
                 result.add(coordinate);
             }
         }
@@ -100,11 +100,11 @@ public class MosApiDataClient {
         try {
             ObjectMapper mapper = new ObjectMapper();
             resultJson = mapper.readValue(
-                    new URL("https://apidata.mos.ru/v1/datasets/897/rows?api_key=" + apiKey + "&$top=136"),
+                    new URL("https://apidata.mos.ru/v1/datasets/897/rows?api_key=" + apiKey + "&$top=10"),
                     new TypeReference<List<CyclePathDtoJson>>() {
                     });
             for (CyclePathDtoJson cp : resultJson) {
-                System.out.println(cp);
+//                System.out.println(cp);
                 int id = cp.getGlobalId();
                 int number = cp.getNumber();
                 List<Coordinate> coordinates = getCoorToList(cp, cp.getCells().getGeoData());

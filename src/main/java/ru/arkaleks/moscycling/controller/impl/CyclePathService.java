@@ -19,30 +19,30 @@ import java.util.Map;
 @Service
 public class CyclePathService {
 
-//    @Autowired
-//    private CyclePathRepository cyclePathRepository;
-//    private CyclePathMapper mapper = CyclePathMapper.INSTANCE;
-//
-//    public List<CyclePathDto> getAllPath() {
-//        return mapper.mapToCyclePathDtoList(cyclePathRepository.findAll());
-//    }
-//
-//    public CyclePathDto getCyclePathById(Integer id) {
-//        return mapper.mapToCyclePathDto(cyclePathRepository.findById(id).orElseThrow(() -> new CyclePathNotFoundException(id)));
-//    }
-//
-//    public CyclePathDto updateCyclePathById(CyclePath cyclePath, Integer id) {
-//        return mapper.mapToCyclePathDto(cyclePathRepository.findById(id)
-//                .map(x -> {
-//                    x.setNumber(cyclePath.getNumber());
-//                    x.setCell(cyclePath.getCell());
-//                    return cyclePathRepository.save(x);
-//                })
-//                .orElseGet(() -> {
-//                    cyclePath.setGlobalId(id);
-//                    return cyclePathRepository.save(cyclePath);
-//                }));
-//    }
+    @Autowired
+    private CyclePathRepository cyclePathRepository;
+    private CyclePathMapper mapper = CyclePathMapper.INSTANCE;
+
+    public List<CyclePathDto> getAllPath() {
+        return mapper.mapToCyclePathDtoList(cyclePathRepository.findAll());
+    }
+
+    public CyclePathDto getCyclePathById(Integer id) {
+        return mapper.mapToCyclePathDto(cyclePathRepository.findById(id).orElseThrow(() -> new CyclePathNotFoundException(id)));
+    }
+
+    public CyclePathDto updateCyclePathById(CyclePath cyclePath, Integer id) {
+        return mapper.mapToCyclePathDto(cyclePathRepository.findById(id)
+                .map(x -> {
+                    x.setNumber(cyclePath.getNumber());
+                    x.setCell(cyclePath.getCell());
+                    return cyclePathRepository.save(x);
+                })
+                .orElseGet(() -> {
+                    cyclePath.setGlobalId(id);
+                    return cyclePathRepository.save(cyclePath);
+                }));
+    }
 //
 //    public CyclePathDto patchCyclePathNumber(Map<String, Integer> update, Integer id) {
 //        return mapper.mapToCyclePathDto(cyclePathRepository.findById(id)

@@ -1,9 +1,6 @@
 package ru.arkaleks.moscycling.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,6 +11,7 @@ import javax.persistence.*;
  */
 @Getter
 @Setter
+@ToString
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,9 +20,9 @@ import javax.persistence.*;
 @Access(AccessType.FIELD)
 public class Coordinate {
     @Id
-    @Column(name = "COORDINATE_ID", updatable = false, nullable = false)
+    @Column(name = "ID", updatable = false, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
- //  private int id;
+    private int globalId;
     private double coorX;
     private double coorY;
 }

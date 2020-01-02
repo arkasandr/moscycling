@@ -23,49 +23,49 @@ import static java.lang.Math.PI;
 @RestController
 public class CyclePathController {
 
-//    @Autowired
-//    private CyclePathService cyclePathService;
+    @Autowired
+    private CyclePathService cyclePathService;
 
 
-//    /**
-//     * Метод находит все велодорожки CyclePath
-//     *
-//     * @param
-//     * @return List<CyclePath>
-//     * @throws
-//     */
-//    @GetMapping("/cyclepath/allpath")
-//    public List<CyclePathDto> getAllCyclePath() {
-//        return cyclePathService.getAllPath();
-//    }
-//
-//    /**
-//     * Метод находит все id велодорожек CyclePath
-//     *
-//     * @param
-//     * @return List<Integer>
-//     * @throws
-//     */
-//    @GetMapping("/cyclepath/allid")
-//    public List<Integer> getAllCyclePathId() {
-//        return cyclePathService.getAllPath()
-//                .stream()
-//                .mapToInt(x -> x.getGlobalId())
-//                .boxed()
-//                .collect(Collectors.toList());
-//    }
-//
-//    /**
-//     * Метод находит велодорожку по id
-//     *
-//     * @param
-//     * @return CyclePath
-//     * @throws CyclePathNotFoundException
-//     */
-//    @GetMapping("/cyclepath/{globalId}")
-//    CyclePathDto findOne(@PathVariable int globalId) {
-//        return cyclePathService.getCyclePathById(globalId);
-//    }
+    /**
+     * Метод находит все велодорожки CyclePath
+     *
+     * @param
+     * @return List<CyclePath>
+     * @throws
+     */
+    @GetMapping("/cyclepath/allpath")
+    public List<CyclePathDto> getAllCyclePath() {
+        return cyclePathService.getAllPath();
+    }
+
+    /**
+     * Метод находит все id велодорожек CyclePath
+     *
+     * @param
+     * @return List<Integer>
+     * @throws
+     */
+    @GetMapping("/cyclepath/allid")
+    public List<Integer> getAllCyclePathId() {
+        return cyclePathService.getAllPath()
+                .stream()
+                .mapToInt(x -> x.getGlobalId())
+                .boxed()
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Метод находит велодорожку по id
+     *
+     * @param
+     * @return CyclePath
+     * @throws CyclePathNotFoundException
+     */
+    @GetMapping("/cyclepath/{globalId}")
+    CyclePathDto findOne(@PathVariable int globalId) {
+        return cyclePathService.getCyclePathById(globalId);
+    }
 //
 //    /**
 //     * Метод определяет максимальную длину велодорожки CyclePath

@@ -1,8 +1,5 @@
 package ru.arkaleks.moscycling.model;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,6 +11,7 @@ import java.util.List;
  */
 @Getter
 @Setter
+@ToString
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,15 +25,7 @@ public class DataLength {
     private int globalId;
     private int pointNumber;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Coordinate.class)
-    @JoinColumn(name="COORDINATE_ID")
+    @JoinColumn(name = "GLOBAL_ID")
     private List<Coordinate> coors;
 
-    @Override
-    public String toString() {
-        return "DataLength{" +
-                "globalId=" + globalId +
-                ", pointNumber=" + pointNumber +
-                ", coors=" + coors +
-                '}';
-    }
 }

@@ -1,9 +1,6 @@
 package ru.arkaleks.moscycling.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,6 +12,7 @@ import java.util.List;
  */
 @Getter
 @Setter
+@ToString
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,13 +29,4 @@ public class Cell {
     private List<Type> type;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = GeoData.class)
     private GeoData geoData;
-
-    @Override
-    public String toString() {
-        return "Cell{" +
-                "globalId=" + globalId +
-                ", type=" + type +
-                ", geoData=" + geoData +
-                '}';
-    }
 }
