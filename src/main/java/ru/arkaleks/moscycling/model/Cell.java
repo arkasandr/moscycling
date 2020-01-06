@@ -10,23 +10,23 @@ import java.util.List;
  * @version $Id$
  * @since 0.1
  */
-@Getter
-@Setter
-@ToString
-
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "CELL")
-@Access(AccessType.FIELD)
 public class Cell {
     @Id
-    @Column(name = "GLOBAL_ID", updatable = false, nullable = false)
+    @Column(name = "CELL_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int globalId;
+    private int id;
     @Column(length = 1000000000)
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = Type.class)
-    private List<Type> type;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = GeoData.class)
-    private GeoData geoData;
+    @OneToMany(mappedBy = "cell", cascade = CascadeType.ALL)
+    private List<PathType> pathType;
+    @Column(length = 1000000000)
+    @OneToMany(mappedBy = "cell", cascade = CascadeType.ALL)
+    private List<DataLength> length;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "CYCLEPATH_ID")
+    private CyclePath cyclepath;
 }

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import ru.arkaleks.moscycling.controller.dto.CyclePathDto;
 import ru.arkaleks.moscycling.controller.impl.CyclePathService;
@@ -21,10 +22,10 @@ import static java.lang.Math.PI;
  */
 @RequiredArgsConstructor
 @RestController
+@Transactional
 public class CyclePathController {
 
-    @Autowired
-    private CyclePathService cyclePathService;
+    private final CyclePathService cyclePathService;
 
 
     /**
@@ -50,7 +51,7 @@ public class CyclePathController {
     public List<Integer> getAllCyclePathId() {
         return cyclePathService.getAllPath()
                 .stream()
-                .mapToInt(x -> x.getGlobalId())
+                .mapToInt(x -> x.getId())
                 .boxed()
                 .collect(Collectors.toList());
     }

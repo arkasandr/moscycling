@@ -3,8 +3,8 @@ package ru.arkaleks.moscycling.controller.dto;
 import lombok.Data;
 
 @Data
-public class TypeDto {
+public class PathTypeDto {
 
-    private int globalId;
+    private int id;
     private String type;
 }

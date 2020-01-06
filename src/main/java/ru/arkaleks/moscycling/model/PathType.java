@@ -8,19 +8,18 @@ import javax.persistence.*;
  * @version $Id$
  * @since 0.1
  */
-@Getter
-@Setter
-@ToString
-
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "TYPE")
-@Access(AccessType.FIELD)
-public class Type {
+@Table(name = "PATHTYPE")
+public class PathType {
     @Id
-    @Column(name = "GLOBAL_ID", updatable = false, nullable = false)
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int globalId;
+    private int id;
     private String type;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "CELL_ID")
+    private Cell cell;
 }

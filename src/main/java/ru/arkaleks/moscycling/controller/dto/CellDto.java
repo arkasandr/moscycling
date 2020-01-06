@@ -1,15 +1,15 @@
 package ru.arkaleks.moscycling.controller.dto;
 
 import lombok.Data;
-import ru.arkaleks.moscycling.model.GeoData;
-import ru.arkaleks.moscycling.model.Type;
+import ru.arkaleks.moscycling.model.DataLength;
+import ru.arkaleks.moscycling.model.PathType;
 
 import java.util.List;
 
 @Data
 public class CellDto {
 
-    private int globalId;
-    private List<Type> type;
-    private GeoData geoData;
+    private int id;
+    private List<PathType> pathType;
+    private List<DataLength> length;
 }

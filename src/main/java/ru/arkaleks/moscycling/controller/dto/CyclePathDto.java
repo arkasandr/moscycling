@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class CyclePathDto {
 
-    private int globalId;
+    private int id;
     private int number;
     private List<Cell> cell;
     private String name;

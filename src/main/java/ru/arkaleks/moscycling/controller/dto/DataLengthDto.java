@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class DataLengthDto {
 
-    private int globalId;
+    private int id;
     private int pointNumber;
     private List<Coordinate> coors;
 }

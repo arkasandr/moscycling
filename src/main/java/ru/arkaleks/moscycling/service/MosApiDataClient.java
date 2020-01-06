@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.arkaleks.moscycling.model.*;
 import ru.arkaleks.moscycling.service.dto.CyclePathDtoJson;
 import ru.arkaleks.moscycling.service.dto.GeoDataDtoJson;
@@ -19,6 +20,7 @@ import java.util.List;
  * @since 0.1
  */
 @Service
+@Transactional
 public class MosApiDataClient {
 
     @Value("${api.key}")
@@ -42,7 +44,7 @@ public class MosApiDataClient {
                 Coordinate coordinate = new Coordinate();
                 coordinate.setCoorX(coor1[0]);
                 coordinate.setCoorY(coor1[1]);
-                coordinate.setGlobalId(cyclePathDtoJson.getGlobalId());
+                coordinate.setId(cyclePathDtoJson.getGlobalId());
                 result.add(coordinate);
             }
         }
@@ -62,27 +64,27 @@ public class MosApiDataClient {
             DataLength dataLength = new DataLength();
             dataLength.setPointNumber(i);
             dataLength.setCoors(coordinates);
-            dataLength.setGlobalId(cyclePathDtoJson.getGlobalId());
+            dataLength.setId(cyclePathDtoJson.getGlobalId());
             result.add(dataLength);
         }
         return result;
     }
 
     /**
-     * Метод формирует список объектов List<Type> из JSON объекта
+     * Метод формирует список объектов List<PathType> из JSON объекта
      *
      * @param
-     * @return List<Type>
+     * @return List<PathType>
      * @throws
      */
-    public List<Type> getTypeToList(CyclePathDtoJson cyclePathDtoJson) {
-        List<Type> result = new ArrayList<>();
+    public List<PathType> getTypeToList(CyclePathDtoJson cyclePathDtoJson) {
+        List<PathType> result = new ArrayList<>();
         String[] types = cyclePathDtoJson.getCells().getType();
         for (int i = 0; i < types.length; i++) {
-            Type type = new Type();
-            type.setGlobalId(cyclePathDtoJson.getGlobalId());
-            type.setType(types[i]);
-            result.add(type);
+            PathType pathType = new PathType();
+            pathType.setId(cyclePathDtoJson.getGlobalId());
+            pathType.setType(types[i]);
+            result.add(pathType);
         }
         return result;
     }
@@ -104,14 +106,11 @@ public class MosApiDataClient {
                     new TypeReference<List<CyclePathDtoJson>>() {
                     });
             for (CyclePathDtoJson cp : resultJson) {
-//                System.out.println(cp);
                 int id = cp.getGlobalId();
                 int number = cp.getNumber();
                 List<Coordinate> coordinates = getCoorToList(cp, cp.getCells().getGeoData());
                 List<DataLength> length = getLengthToList(cp, coordinates);
-                Cell cell = new Cell(id, getTypeToList(cp), new GeoData(id, length));
-                List<Cell> cells = new ArrayList<>();
-                cells.add(cell);
+
                 String name = cp.getCells().getName();
                 String oop = cp.getCells().getObjectOperOrgPhone();
                 double width = cp.getCells().getWidth();
@@ -119,9 +118,13 @@ public class MosApiDataClient {
                 String dep = cp.getCells().getDepartamentalAffiliation();
                 String operOrgName = cp.getCells().getOperOrgName();
                 String portionName = cp.getCells().getPortionName();
+                CyclePath cyclePathOne = new CyclePath(id, number,
+                        name, oop, width, location, dep, operOrgName, portionName);
+                Cell cell = new Cell(id, getTypeToList(cp), length, cyclePathOne);
+                List<Cell> cells = new ArrayList<>();
+                cells.add(cell);
                 CyclePath cyclePath = new CyclePath(id, number, cells,
                         name, oop, width, location, dep, operOrgName, portionName);
-                System.out.println(cyclePath.toString());
                 result.add(cyclePath);
             }
         } catch (

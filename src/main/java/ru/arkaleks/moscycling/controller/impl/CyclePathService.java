@@ -39,7 +39,7 @@ public class CyclePathService {
                     return cyclePathRepository.save(x);
                 })
                 .orElseGet(() -> {
-                    cyclePath.setGlobalId(id);
+                    cyclePath.setId(id);
                     return cyclePathRepository.save(cyclePath);
                 }));
     }

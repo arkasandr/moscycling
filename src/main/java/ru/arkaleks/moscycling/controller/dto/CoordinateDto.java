@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class CoordinateDto {
 
-    private int globalId;
+    private int id;
     private double coorX;
     private double coorY;
 }
