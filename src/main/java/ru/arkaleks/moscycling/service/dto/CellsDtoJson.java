@@ -7,6 +7,11 @@ import lombok.Data;
 
 import javax.persistence.Column;
 
+/**
+ * @author Alex Arkashev (arkasandr@gmail.com)
+ * @version $Id$
+ * @since 0.1
+ */
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)

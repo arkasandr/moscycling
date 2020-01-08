@@ -5,12 +5,17 @@ import ru.arkaleks.moscycling.model.Cell;
 
 import java.util.List;
 
+/**
+ * @author Alex Arkashev (arkasandr@gmail.com)
+ * @version $Id$
+ * @since 0.1
+ */
+
 @Data
 public class CyclePathDto {
 
     private int id;
     private int number;
-    private List<Cell> cell;
     private String name;
     private String objectOperOrgPhone;
     private double width;

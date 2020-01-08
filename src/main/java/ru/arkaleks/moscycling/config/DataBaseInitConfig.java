@@ -9,6 +9,12 @@ import ru.arkaleks.moscycling.repository.CyclePathRepository;
 
 import java.util.List;
 
+/**
+ * @author Alex Arkashev (arkasandr@gmail.com)
+ * @version $Id$
+ * @since 0.1
+ */
+
 @Configuration
 public class DataBaseInitConfig {
 

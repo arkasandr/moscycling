@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Alex Arkashev (arkasandr@gmail.com)
@@ -33,11 +34,11 @@ public class CyclePath {
 
     @Id
     @Column(name = "CYCLEPATH_ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="cycle_path_seq")
-    @SequenceGenerator(name="cycle_path_seq", sequenceName="cycle_path_seq", allocationSize=10)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cycle_path_seq")
+    @SequenceGenerator(name = "cycle_path_seq", sequenceName = "cycle_path_seq", allocationSize = 10)
     private int id;
     private int number;
-    @OneToMany(mappedBy = "cyclepath", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cyclepath", cascade = CascadeType.ALL)
     private List<Cell> cell;
     private String name;
     private String objectOperOrgPhone;
@@ -46,7 +47,6 @@ public class CyclePath {
     private String departamentalAffiliation;
     private String operOrgName;
     private String portionName;
-
 
 
 }

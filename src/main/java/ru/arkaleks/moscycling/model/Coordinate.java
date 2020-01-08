@@ -12,12 +12,13 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
 @Table(name = "COORDINATE")
 public class Coordinate {
     @Id
     @Column(name = "COORDINATE_ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private double coorX;
     private double coorY;

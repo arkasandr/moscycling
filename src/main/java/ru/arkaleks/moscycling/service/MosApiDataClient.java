@@ -14,6 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * @author Alex Arkashev (arkasandr@gmail.com)
  * @version $Id$
@@ -81,9 +82,7 @@ public class MosApiDataClient {
         List<PathType> result = new ArrayList<>();
         String[] types = cyclePathDtoJson.getCells().getType();
         for (int i = 0; i < types.length; i++) {
-            PathType pathType = new PathType();
-            pathType.setId(cyclePathDtoJson.getGlobalId());
-            pathType.setType(types[i]);
+            PathType pathType = new PathType(cyclePathDtoJson.getGlobalId(), types[i]);
             result.add(pathType);
         }
         return result;
@@ -109,8 +108,8 @@ public class MosApiDataClient {
                 int id = cp.getGlobalId();
                 int number = cp.getNumber();
                 List<Coordinate> coordinates = getCoorToList(cp, cp.getCells().getGeoData());
-                List<DataLength> length = getLengthToList(cp, coordinates);
-
+                List<DataLength> dataLengths = new ArrayList<>();
+                List<PathType> pathTypes = new ArrayList<>();
                 String name = cp.getCells().getName();
                 String oop = cp.getCells().getObjectOperOrgPhone();
                 double width = cp.getCells().getWidth();
@@ -118,13 +117,26 @@ public class MosApiDataClient {
                 String dep = cp.getCells().getDepartamentalAffiliation();
                 String operOrgName = cp.getCells().getOperOrgName();
                 String portionName = cp.getCells().getPortionName();
-                CyclePath cyclePathOne = new CyclePath(id, number,
+                CyclePath cyclePath = new CyclePath(id, number,
                         name, oop, width, location, dep, operOrgName, portionName);
-                Cell cell = new Cell(id, getTypeToList(cp), length, cyclePathOne);
+                Cell cell = new Cell(id, cyclePath);
+                for (PathType pathType : getTypeToList(cp)) {
+                    pathType.setCell(cell);
+                    pathTypes.add(pathType);
+                }
+                for (DataLength dataLength : getLengthToList(cp, coordinates)) {
+                    dataLength.setCell(cell);
+                    for (Coordinate coordinate : coordinates) {
+                        coordinate.setDatalength(dataLength);
+                    }
+                    dataLengths.add(dataLength);
+                }
+                cell.setPathType(pathTypes);
+                cell.setLength(dataLengths);
+
                 List<Cell> cells = new ArrayList<>();
                 cells.add(cell);
-                CyclePath cyclePath = new CyclePath(id, number, cells,
-                        name, oop, width, location, dep, operOrgName, portionName);
+                cyclePath.setCell(cells);
                 result.add(cyclePath);
             }
         } catch (

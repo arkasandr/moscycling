@@ -10,15 +10,23 @@ import java.util.List;
  * @version $Id$
  * @since 0.1
  */
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "CELL")
 public class Cell {
+
+    public Cell(int id, CyclePath cyclepath) {
+        this.id = id;
+        this.cyclepath = cyclepath;
+    }
+
     @Id
     @Column(name = "CELL_ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(length = 1000000000)
     @OneToMany(mappedBy = "cell", cascade = CascadeType.ALL)
@@ -26,7 +34,7 @@ public class Cell {
     @Column(length = 1000000000)
     @OneToMany(mappedBy = "cell", cascade = CascadeType.ALL)
     private List<DataLength> length;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CYCLEPATH_ID")
     private CyclePath cyclepath;
 }
