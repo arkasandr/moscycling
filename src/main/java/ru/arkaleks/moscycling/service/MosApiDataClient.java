@@ -111,14 +111,14 @@ public class MosApiDataClient {
                 List<DataLength> dataLengths = new ArrayList<>();
                 List<PathType> pathTypes = new ArrayList<>();
                 String name = cp.getCells().getName();
-                String oop = cp.getCells().getObjectOperOrgPhone();
+                String oop = cp.getCells().getObjectPhone();
                 double width = cp.getCells().getWidth();
                 String location = cp.getCells().getLocation();
                 String dep = cp.getCells().getDepartamentalAffiliation();
-                String operOrgName = cp.getCells().getOperOrgName();
+                String orgName = cp.getCells().getOrgName();
                 String portionName = cp.getCells().getPortionName();
                 CyclePath cyclePath = new CyclePath(id, number,
-                        name, oop, width, location, dep, operOrgName, portionName);
+                        name, oop, width, location, dep, orgName, portionName);
                 Cell cell = new Cell(id, cyclePath);
                 for (PathType pathType : getTypeToList(cp)) {
                     pathType.setCell(cell);
@@ -138,6 +138,7 @@ public class MosApiDataClient {
                 cells.add(cell);
                 cyclePath.setCell(cells);
                 result.add(cyclePath);
+                System.out.println(cyclePath);
             }
         } catch (
                 IOException e) {

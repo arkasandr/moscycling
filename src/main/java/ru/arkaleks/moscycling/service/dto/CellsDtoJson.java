@@ -21,7 +21,7 @@ public class CellsDtoJson {
     @JsonProperty("Name")
     private String name;
     @JsonProperty("ObjectOperOrgPhone")
-    private String objectOperOrgPhone;
+    private String objectPhone;
     @Column(length = 1000000000)
     @JsonProperty("Type")
     private String[] type;
@@ -34,7 +34,7 @@ public class CellsDtoJson {
     @JsonProperty("DepartamentalAffiliation")
     private String departamentalAffiliation;
     @JsonProperty("OperOrgName")
-    private String operOrgName;
+    private String orgName;
     @JsonProperty("PortionName")
     private String portionName;
 }

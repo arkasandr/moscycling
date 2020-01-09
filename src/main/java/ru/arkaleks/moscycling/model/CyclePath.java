@@ -17,16 +17,16 @@ import java.util.List;
 @Table(name = "CYCLEPATH")
 public class CyclePath {
 
-    public CyclePath(int id, int number, String name, String objectOperOrgPhone, double width, String location,
-                     String departamentalAffiliation, String operOrgName, String portionName) {
+    public CyclePath(int id, int number, String name, String objectPhone, double width, String location,
+                     String departamentalAffiliation, String orgName, String portionName) {
         this.id = id;
         this.number = number;
         this.name = name;
-        this.objectOperOrgPhone = objectOperOrgPhone;
+        this.objectPhone = objectPhone;
         this.width = width;
         this.location = location;
         this.departamentalAffiliation = departamentalAffiliation;
-        this.operOrgName = operOrgName;
+        this.orgName = orgName;
         this.portionName = portionName;
     }
 
@@ -43,7 +43,7 @@ public class CyclePath {
 
     private String name;
 
-    private String objectOperOrgPhone;
+    private String objectPhone;
 
     private double width;
 
@@ -51,7 +51,7 @@ public class CyclePath {
 
     private String departamentalAffiliation;
 
-    private String operOrgName;
+    private String orgName;
 
     private String portionName;
 

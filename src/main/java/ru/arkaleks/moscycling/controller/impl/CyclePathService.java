@@ -123,11 +123,11 @@ public class CyclePathService {
                     x.setNumber(cyclePath.getNumber());
                     x.setCell(cyclePath.getCell());
                     x.setName(cyclePath.getName());
-                    x.setObjectOperOrgPhone(cyclePath.getObjectOperOrgPhone());
+                    x.setObjectPhone(cyclePath.getObjectPhone());
                     x.setWidth(cyclePath.getWidth());
                     x.setLocation(cyclePath.getLocation());
                     x.setDepartamentalAffiliation(cyclePath.getDepartamentalAffiliation());
-                    x.setOperOrgName(cyclePath.getOperOrgName());
+                    x.setOrgName(cyclePath.getOrgName());
                     x.setPortionName(cyclePath.getPortionName());
                     return cyclePathRepository.save(x);
                 })

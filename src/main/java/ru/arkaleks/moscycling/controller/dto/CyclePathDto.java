@@ -13,10 +13,10 @@ public class CyclePathDto {
     private int id;
     private int number;
     private String name;
-    private String objectOperOrgPhone;
+    private String objectPhone;
     private double width;
     private String location;
     private String departamentalAffiliation;
-    private String operOrgName;
+    private String orgName;
     private String portionName;
 }
