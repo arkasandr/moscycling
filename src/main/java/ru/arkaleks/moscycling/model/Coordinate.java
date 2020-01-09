@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
 @Table(name = "COORDINATE")
 public class Coordinate {

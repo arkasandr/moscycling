@@ -5,7 +5,6 @@ package ru.arkaleks.moscycling.controller;
  * @version $Id$
  * @since 0.1
  */
-
 public class CyclePathNotFoundException extends RuntimeException {
 
     public CyclePathNotFoundException(int globalId) {

@@ -7,7 +7,6 @@ import java.util.Set;
  * @version $Id$
  * @since 0.1
  */
-
 public class CyclePathUnSupportedFieldPatchException extends RuntimeException {
 
     public CyclePathUnSupportedFieldPatchException(Set<String> keys) {

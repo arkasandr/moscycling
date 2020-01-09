@@ -16,7 +16,6 @@ import ru.arkaleks.moscycling.model.CyclePath;
  * @version $Id$
  * @since 0.1
  */
-
 @RequiredArgsConstructor
 @RestController
 @Transactional
@@ -152,17 +151,17 @@ public class CyclePathController {
         return cyclePathService.updateCyclePathById(newPath, globalId);
     }
 
-//    /**
-//     * Метод обновляет только поле "Number" велодорожки CyclePath
-//     *
-//     * @param
-//     * @return CyclePath
-//     * @throws
-//     */
-//    @PatchMapping("/cyclepath/{globalId}")
-//    CyclePathDto patch(@RequestBody Map<String, Integer> update, @PathVariable Integer globalId) {
-//        return cyclePathService.patchCyclePathNumber(update, globalId);
-//    }
+    /**
+     * Метод обновляет только поле "Number" велодорожки CyclePath
+     *
+     * @param
+     * @return CyclePath
+     * @throws
+     */
+    @PatchMapping("/cyclepath/{globalId}")
+    CyclePathDto patch(@RequestBody Map<String, Integer> update, @PathVariable Integer globalId) {
+        return cyclePathService.patchCyclePathNumber(update, globalId);
+    }
 
     /**
      * Метод удаляет велодорожку CyclePath

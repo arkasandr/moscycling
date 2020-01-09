@@ -8,6 +8,5 @@ import ru.arkaleks.moscycling.model.CyclePath;
  * @version $Id$
  * @since 0.1
  */
-
 public interface CyclePathRepository extends JpaRepository<CyclePath, Integer> {
 }

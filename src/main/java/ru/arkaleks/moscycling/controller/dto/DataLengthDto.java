@@ -1,9 +1,6 @@
 package ru.arkaleks.moscycling.controller.dto;
 
 import lombok.Data;
-import ru.arkaleks.moscycling.model.Coordinate;
-
-import java.util.List;
 
 /**
  * @author Alex Arkashev (arkasandr@gmail.com)

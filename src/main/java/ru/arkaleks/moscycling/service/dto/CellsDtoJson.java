@@ -12,7 +12,6 @@ import javax.persistence.Column;
  * @version $Id$
  * @since 0.1
  */
-
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CellsDtoJson {

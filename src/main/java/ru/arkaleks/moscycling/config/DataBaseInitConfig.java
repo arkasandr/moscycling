@@ -14,7 +14,6 @@ import java.util.List;
  * @version $Id$
  * @since 0.1
  */
-
 @Configuration
 public class DataBaseInitConfig {
 

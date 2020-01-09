@@ -9,7 +9,6 @@ import lombok.Data;
  * @version $Id$
  * @since 0.1
  */
-
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CyclePathDtoJson {

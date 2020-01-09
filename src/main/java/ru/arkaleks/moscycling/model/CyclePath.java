@@ -4,14 +4,12 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Alex Arkashev (arkasandr@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
