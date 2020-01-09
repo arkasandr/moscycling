@@ -35,15 +35,24 @@ public class CyclePath {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cycle_path_seq")
     @SequenceGenerator(name = "cycle_path_seq", sequenceName = "cycle_path_seq", allocationSize = 10)
     private int id;
+
     private int number;
+
     @OneToMany(mappedBy = "cyclepath", cascade = CascadeType.ALL)
     private List<Cell> cell;
+
     private String name;
+
     private String objectOperOrgPhone;
+
     private double width;
+
     private String location;
+
     private String departamentalAffiliation;
+
     private String operOrgName;
+
     private String portionName;
 
 

@@ -25,7 +25,9 @@ public class PathType {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String type;
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "CELL_ID")
     private Cell cell;

@@ -27,12 +27,15 @@ public class Cell {
     @Column(name = "CELL_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(length = 1000000000)
     @OneToMany(mappedBy = "cell", cascade = CascadeType.ALL)
     private List<PathType> pathType;
+
     @Column(length = 1000000000)
     @OneToMany(mappedBy = "cell", cascade = CascadeType.ALL)
     private List<DataLength> length;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CYCLEPATH_ID")
     private CyclePath cyclepath;

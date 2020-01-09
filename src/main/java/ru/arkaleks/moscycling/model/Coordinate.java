@@ -15,12 +15,16 @@ import javax.persistence.*;
 @Entity
 @Table(name = "COORDINATE")
 public class Coordinate {
+
     @Id
     @Column(name = "COORDINATE_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private double coorX;
+
     private double coorY;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "DATALENGTH_ID")
     private DataLength datalength;
