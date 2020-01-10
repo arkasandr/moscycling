@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                   http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet
+            id="Add_tables"
+            author="Alex Arkashev">
+
+        <createSequence catalogName="cat"
+                        cycle="false"
+                        incrementBy="1"
+                        maxValue="1000"
+                        minValue="1"
+                        schemaName="public"
+                        sequenceName="cycle_path_seq"
+                        startValue="1"/>
+
+
+        <createTable tableName="cyclepath">
+            <column name="cyclepath_id" type="int" defaultValueComputed="nextval('cycle_path_seq')">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="number" type="int" autoIncrement="true"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="object_phone" type="varchar(255)"/>
+            <column name="width" type="float(53)"/>
+            <column name="location" type="varchar(255)"/>
+            <column name="departament" type="varchar(255)"/>
+            <column name="org_name" type="varchar(255)"/>
+            <column name="portion_name" type="varchar(255)"/>
+        </createTable>
+
+        <createTable tableName="cell">
+            <column name="cell_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="cyclepath_id" type="int">
+                <constraints nullable="false" references="cyclepath(cyclepath_id)"
+                             foreignKeyName="fk_cyclepath_to_cell"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="pathtype">
+            <column name="pathtype_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="type" type="varchar(255)"/>
+            <column name="cell_id" type="int">
+                <constraints nullable="false" references="cell(cell_id)" foreignKeyName="fk_cell_to_pathtype"/>
+            </column>
+
+        </createTable>
+
+        <createTable tableName="datalength">
+            <column name="datalength_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="point_number" type="int"/>
+            <column name="cell_id" type="int">
+                <constraints nullable="false" references="cell(cell_id)" foreignKeyName="fk_cell_to_datalength"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="coordinate">
+            <column name="coordinate_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="coorx" type="float(53)"/>
+            <column name="coory" type="float(53)"/>
+            <column name="datalength_id" type="int">
+                <constraints nullable="false" references="datalength(datalength_id)"
+                             foreignKeyName="fk_datalength_to_coordinate"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>
