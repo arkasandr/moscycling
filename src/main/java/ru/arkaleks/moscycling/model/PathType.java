@@ -22,7 +22,7 @@ public class PathType {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "PATHTYPE_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
