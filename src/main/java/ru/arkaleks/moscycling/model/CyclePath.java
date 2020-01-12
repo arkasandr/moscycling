@@ -32,8 +32,6 @@ public class CyclePath {
 
     @Id
     @Column(name = "CYCLEPATH_ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cycle_path_seq")
-    @SequenceGenerator(name = "cycle_path_seq", sequenceName = "cycle_path_seq", allocationSize = 100)
     private int id;
 
     private int number;

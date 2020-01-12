@@ -1,0 +1,133 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: postgres
+
+  - changeSet:
+      id: 1
+      author: Alex Arkashev
+      changes:
+        - createSequence:
+            catalogName: cat
+            cycle: false
+            incrementBy: 1
+            maxValue: 1000
+            minValue: 1
+            schemaName: public
+            sequenceName: cycle_path_seq
+            startValue: 1
+        - createTable:
+            tableName: cyclepath
+            columns:
+              - column:
+                  name: cyclepath_id
+                  type: int
+                  defaultValueComputed: nextval('cycle_path_seq')
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: number
+                  type: int
+                  autoIncrement: true
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: object_phone
+                  type: varchar(50)
+              - column:
+                  name: width
+                  type: float(53)
+              - column:
+                  name: location
+                  type: varchar(255)
+              - column:
+                  name: departament
+                  type: varchar(255)
+              - column:
+                  name: org_name
+                  type: varchar(255)
+              - column:
+                  name: portion_name
+                  type: varchar(255)
+        - createTable:
+            tableName: cell
+            columns:
+              - column:
+                  name: cell_id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: cyclepath_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    references: cyclepath(cyclepath_id)
+                    foreignKeyName: fk_cyclepath_to_cell
+        - createTable:
+            tableName: pathtype
+            columns:
+              - column:
+                  name: pathtype_id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: type
+                  type: varchar(255)
+              - column:
+                  name: cell_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    references: cell(cell_id)
+                    foreignKeyName: fk_cell_to_pathtype
+        - createTable:
+            tableName: datalength
+            columns:
+              - column:
+                  name: datalength_id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: point_number
+                  type: int
+              - column:
+                  name: cell_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    references: cell(cell_id)
+                    foreignKeyName: fk_cell_to_datalength
+        - createTable:
+            tableName: coordinate
+            columns:
+              - column:
+                  name: coordinate_id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: coorx
+                  type: double(53)
+              - column:
+                  name: coory
+                  type: double(53)
+              - column:
+                  name: datalength_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    references: datalength(datalength_id)
+                    foreignKeyName: fk_datalength_to_coordinate
