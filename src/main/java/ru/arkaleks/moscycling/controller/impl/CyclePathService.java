@@ -126,7 +126,7 @@ public class CyclePathService {
                     x.setObjectPhone(cyclePath.getObjectPhone());
                     x.setWidth(cyclePath.getWidth());
                     x.setLocation(cyclePath.getLocation());
-                    x.setDepartamentalAffiliation(cyclePath.getDepartamentalAffiliation());
+                    x.setDepartament(cyclePath.getDepartament());
                     x.setOrgName(cyclePath.getOrgName());
                     x.setPortionName(cyclePath.getPortionName());
                     return cyclePathRepository.save(x);

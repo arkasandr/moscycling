@@ -16,7 +16,7 @@ public class CyclePathDto {
     private String objectPhone;
     private double width;
     private String location;
-    private String departamentalAffiliation;
+    private String departament;
     private String orgName;
     private String portionName;
 }

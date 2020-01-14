@@ -18,22 +18,20 @@ import java.util.List;
 public class CyclePath {
 
     public CyclePath(int id, int number, String name, String objectPhone, double width, String location,
-                     String departamentalAffiliation, String orgName, String portionName) {
+                     String departament, String orgName, String portionName) {
         this.id = id;
         this.number = number;
         this.name = name;
         this.objectPhone = objectPhone;
         this.width = width;
         this.location = location;
-        this.departamentalAffiliation = departamentalAffiliation;
+        this.departament = departament;
         this.orgName = orgName;
         this.portionName = portionName;
     }
 
     @Id
     @Column(name = "CYCLEPATH_ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cycle_path_seq")
-    @SequenceGenerator(name = "cycle_path_seq", sequenceName = "cycle_path_seq", allocationSize = 10)
     private int id;
 
     private int number;
@@ -49,7 +47,7 @@ public class CyclePath {
 
     private String location;
 
-    private String departamentalAffiliation;
+    private String departament;
 
     private String orgName;
 

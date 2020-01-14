@@ -32,7 +32,7 @@ public class CellsDtoJson {
     @JsonProperty("geoData")
     private GeoDataDtoJson geoData;
     @JsonProperty("DepartamentalAffiliation")
-    private String departamentalAffiliation;
+    private String departament;
     @JsonProperty("OperOrgName")
     private String orgName;
     @JsonProperty("PortionName")

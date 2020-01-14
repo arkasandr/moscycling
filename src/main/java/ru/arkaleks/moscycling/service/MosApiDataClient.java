@@ -114,7 +114,7 @@ public class MosApiDataClient {
                 String oop = cp.getCells().getObjectPhone();
                 double width = cp.getCells().getWidth();
                 String location = cp.getCells().getLocation();
-                String dep = cp.getCells().getDepartamentalAffiliation();
+                String dep = cp.getCells().getDepartament();
                 String orgName = cp.getCells().getOrgName();
                 String portionName = cp.getCells().getPortionName();
                 CyclePath cyclePath = new CyclePath(id, number,
