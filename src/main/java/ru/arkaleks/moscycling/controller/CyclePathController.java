@@ -36,6 +36,11 @@ public class CyclePathController {
         return cyclePathService.getAllPath();
     }
 
+//    @GetMapping("/cyclepath/index")
+//    public String getIndex() {
+//        return "index";
+//    }
+
     /**
      * Метод находит все id велодорожек CyclePath
      *

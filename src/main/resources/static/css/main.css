@@ -1,0 +1,64 @@
+body{
+font-family: 'Raleway', sans-serif;
+}
+
+ul, li {
+display: block;
+padding: 0;
+margin: 0;
+
+}
+
+h1 {
+    font-weight: 700;
+
+}
+
+h2 {
+    font-weight: 400;
+}
+
+.header{
+background: #669966;
+color: #010101;
+padding-top: 30px;
+padding-bottom: 30px;
+}
+
+.menu{
+
+}
+
+.menu__item{
+margin: 0 40px;
+
+}
+
+
+.menu__item a{
+font-size: 24px;
+font-weight: 400;
+color: #000;
+}
+
+.offer{
+}
+
+.offer__title{
+    font-size: 24px;
+    color: #000;
+    margin-bottom: 10px;
+    margin-top: 80px;
+}
+
+.offer__text{
+    font-size: 18px;
+    color: #000;
+    margin-top: 20px;
+    width: 400px;
+}
+
+.chain{
+    display: block;
+    margin: 50px auto 0;
+}
