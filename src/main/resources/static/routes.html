@@ -65,40 +65,65 @@
 </header>
 
 
-<section class="cards">
+<section class="routes">
     <div class="conteiner">
         <div class="row">
-            <div class="col-md-4 ml-auto">
-                <a href="routes.html" class="custom-card">
-                <div class="cards__one text-white text-center bg-secondary border-primary" style="width: 20rem;">
-                    <img class="card-img-top" src="img/860145501_id.png" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">Rout ID 860145501</p>
-                    </div>
+            <div class="col-md-8 offset-md-2">
+                <table id="routes__all" class="table table-bordered table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">Route ID</th>
+                        <th scope="col">Route Name</th>
+                        <th scope="col">Object Phone</th>
+                    </tr>
+                    </thead>
+                </table>
+
+                <div class="routes__search">
+                    <form class="form-horizontal" id="routes__search__form">
+                        <button id="getALlRoutes" type="submit" class="btn btn-secondary btn-sm">Get All Routes</button>
+                    </form>
                 </div>
-                </a>
             </div>
 
-            <div class="col-md-3">
-                <a href="routes.html" class="custom-card">
-                <div class="cards__two text-white text-center bg-secondary" style="width: 20rem;">
-                    <img class="card-img-top" src="img/860363093_id.png" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">Route ID 860363093</p>
-                    </div>
-                </div>
-                </a>
+            <div class="col-md-2">
             </div>
+        </div>
+    </div>
+</section>
 
-            <div class="col-md-4 mr-auto">
-                <a href="routes.html" class="custom-card">
-                <div class="cards__three text-white text-center bg-secondary" style="width: 20rem;">
-                    <img class="card-img-top" src="img/861394970_id.png" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">Route ID 861394970</p>
-                    </div>
+<section class="info">
+    <div class="conteiner">
+        <div class="row">
+            <div class="col-md-3 ml-auto">
+                <div class="info__max">
+                    <form class="form-horizontal" id="info__max__form">
+                        <div class="form-group form-group-lg">
+                            <label class="control-label">Max Route Length</label>
+                            <input type=text class="form-control" id="maxlength">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" id="info__max__form__search"
+                                    class="btn btn-secondary btn-sm">Search
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                </a>
+            </div>
+            <div class="col-md-3 mr-auto">
+                <div class="info__min">
+                    <form class="form-horizontal" id="info__min__form">
+                        <div class="form-group form-group-lg">
+                            <label class="control-label">Min Route Length</label>
+                            <input type=text class="form-control" id="minlength">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" id="info__min__form__search"
+                                    class="btn btn-secondary btn-sm">Search
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -115,7 +140,5 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="js/main.js"></script>
-
-
 </body>
 </html>

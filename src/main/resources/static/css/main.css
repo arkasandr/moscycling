@@ -21,8 +21,8 @@ h2 {
 .header{
 background: #669966;
 color: #010101;
-padding-top: 30px;
-padding-bottom: 30px;
+padding-top: 20px;
+padding-bottom: 10px;
 }
 
 .menu{
@@ -47,8 +47,8 @@ color: #000;
 .offer__title{
     font-size: 24px;
     color: #000;
-    margin-bottom: 10px;
-    margin-top: 80px;
+    margin-bottom: 40px;
+    margin-top: 110px;
 }
 
 .offer__text{
@@ -61,4 +61,66 @@ color: #000;
 .chain{
     display: block;
     margin: 50px auto 0;
+    padding-bottom: 50px;
+}
+
+.routes{
+    background: #669966;
+}
+.routes__all{
+    font-size: 18px;
+    color: #000;
+}
+.routes__search{
+    font-size: 18px;
+    color: #000;
+    padding-bottom: 10px;
+}
+
+.info{
+    background: #669966;
+}
+
+.info__max{
+    font-size: 18px;
+    color: #000;
+}
+
+.info__min{
+    font-size: 18px;
+    color: #000;
+}
+
+.cards{
+    background: #669966;
+}
+
+.cards__one{
+    display: block;
+    margin: 0px auto 0;
+    font-size: 14px;
+    color: #000;
+}
+
+.cards__two{
+    display: block;
+    margin: 0px auto 0;
+    font-size: 14px;
+    color: #000;
+}
+
+.cards__three{
+    display: block;
+    margin: 0px auto 0;
+    font-size: 14px;
+    color: #000;
+}
+
+.editor{
+    background: #669966;
+}
+
+a.custom-card,
+a.custom-card:hover {
+    color: inherit;
 }
