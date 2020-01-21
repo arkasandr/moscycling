@@ -1,13 +1,13 @@
 jQuery(document).ready(function ($) {
 
-    $("#info__max__form").submit(function(event) {
+    $("#info__max__form").submit(function (event) {
         enableSearchMaxButton(false);
         event.preventDefault();
         searchMaxLengthAjax()
     });
 
 
-    $("#info__min__form").submit(function(event) {
+    $("#info__min__form").submit(function (event) {
         enableSearchMinButton(false);
         event.preventDefault();
         searchMinLengthAjax()

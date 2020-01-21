@@ -1,4 +1,4 @@
-body{
+body {
     font-family: 'Raleway', sans-serif;
 }
 
@@ -18,103 +18,149 @@ h2 {
     font-weight: 400;
 }
 
-.header{
+.header {
     background: #669966;
     color: #010101;
     padding-top: 20px;
     padding-bottom: 10px;
 }
 
-.menu{
+.menu {
 
 }
 
-.menu__item{
+.menu__item {
     margin: 0 40px;
 
 }
 
 
-.menu__item a{
+.menu__item a {
     font-size: 24px;
     font-weight: 400;
     color: #000;
 }
 
-.offer{
+.offer {
 }
 
-.offer__title{
+.offer__title {
     font-size: 24px;
     color: #000;
     margin-bottom: 40px;
     margin-top: 110px;
 }
 
-.offer__text{
+.offer__text {
     font-size: 18px;
     color: #000;
     margin-top: 20px;
     width: 400px;
 }
 
-.chain{
+.chain {
     display: block;
     margin: 50px auto 0;
     padding-bottom: 50px;
 }
 
-.routes{
-    background: #669966;
-}
-.routes__all{
-    font-size: 18px;
-    color: #000;
-}
-.routes__search{
-    font-size: 18px;
-    color: #000;
-    padding-bottom: 10px;
-}
-
-.info{
+.routes {
     background: #669966;
 }
 
-.info__max{
+.routes__all {
     font-size: 18px;
     color: #000;
 }
 
-.info__min{
+.routes__search {
+    font-size: 18px;
+    color: #000;
+    padding-bottom: 70px;
+
+}
+
+.info {
+    background: #669966;
+}
+
+.info__max {
+    font-size: 18px;
+    color: #000;
+    padding-bottom: 50px;
+}
+
+.info__min {
     font-size: 18px;
     color: #000;
 }
 
-.cards{
+.cards {
     background: #669966;
 }
 
-.cards__all{
+.cards__all {
     background: #669966;
 }
 
-.cards__one{
+.cards__one {
     font-size: 14px;
     color: #000;
 }
 
-.cards__two{
+.cards__two {
     font-size: 14px;
     color: #000;
 }
 
-.cards__three{
+.cards__three {
     font-size: 14px;
     color: #000;
 }
 
-.editor{
+.footer {
+    background: #669966;
+
+}
+
+.title__main {
+    background: #669966;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 50px;
+}
+
+.title__text {
+    background: #669966;
+    font-size: 18px;
+    text-align: center;
+}
+
+.form {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.form__input {
+    background: #fff;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 5px;
+    width: 500px;
+    padding: 4px 0;
+    padding-left: 20px;
+
+}
+
+.form__button {
+    background: #95999c;
+    font-family: 'Raleway', sans-serif;
+
+
+}
+
+.editor {
     background: #669966;
 }
 
@@ -125,17 +171,17 @@ a.custom-card:hover {
 
 @media screen and (max-width: 992px) {
     .logo {
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 30px;
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 30px;
     }
 
 
-    .offer__title{
+    .offer__title {
         text-align: center;
     }
 
-    .offer__text{
+    .offer__text {
         text-align: center;
         margin: 0 auto;
     }

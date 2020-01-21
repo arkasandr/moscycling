@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, shrink-to-fit=no">
 
     <title>Moscycling</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap" rel="stylesheet">
@@ -12,13 +13,13 @@
 </head>
 <body>
 <header class="header">
-    <div class="conteiner">
+    <div class="container">
         <div class="row">
-            <div class="col-md-2 ml-auto">
+            <div class="col-lg-3">
                 <img src="img/logo.png" alt="moscycling" class="logo">
-
             </div>
-            <div class="col-md-7 ml-auto">
+
+            <div class="col-lg-7 ml-auto">
                 <nav>
                     <ul class="menu d-flex justify-content-center">
                         <li class="menu__item">
@@ -39,26 +40,28 @@
                     </ul>
                 </nav>
             </div>
+
+
         </div>
 
         <div class="row">
-            <div class="col-md-2 ml-auto">
+
+            <div class="col-lg-3">
                 <div class="offer">
                     <h2 class="offer__title">
                         Choose Your Route...
                     </h2>
                 </div>
-                <div class="offer__text">
+                <p class="offer__text">
                     All official Moscow cyclepathes in one place. Get a bike and choose Your route. <br> We miss the
                     item? Want to create own? <br> Click Editor and improve this mistake!
-                </div>
-
-
+                </p>
             </div>
-            <div class="col-md-7 ml-auto">
+
+            <div class="col-lg-7 ml-auto">
                 <img src="img/chain.png" alt="mchain" class="chain">
-
             </div>
+
         </div>
 
     </div>
@@ -66,7 +69,7 @@
 
 
 <section class="routes">
-    <div class="conteiner">
+    <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <table id="routes__all" class="table table-bordered table-sm">
@@ -93,7 +96,7 @@
 </section>
 
 <section class="info">
-    <div class="conteiner">
+    <div class="container">
         <div class="row">
             <div class="col-md-3 ml-auto">
                 <div class="info__max">
@@ -130,9 +133,26 @@
 </section>
 
 <footer class="footer">
-    <div class="conteiner">
+    <div class="container">
         <div class="row">
-
+            <div class="col-lg-9 m-auto">
+                <div class="title">
+                    <h2 class="title__main">
+                        Contact Us
+                    </h2>
+                </div>
+                <p class="title__text">
+                    Subscribe now to receive free notifications on new releases of our software product!
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 m-auto">
+                <form  class="form" id="form__email">
+                    <input type="email" placeholder="Please enter Your email" class="form__input" required>
+                    <button type="submit" class="form_button btn-secondary btn-sm">SUBMIT</button>
+                </form>
+            </div>
         </div>
     </div>
 </footer>
