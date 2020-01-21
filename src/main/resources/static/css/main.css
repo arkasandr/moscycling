@@ -1,11 +1,11 @@
 body{
-font-family: 'Raleway', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 ul, li {
-display: block;
-padding: 0;
-margin: 0;
+    display: block;
+    padding: 0;
+    margin: 0;
 
 }
 
@@ -19,10 +19,10 @@ h2 {
 }
 
 .header{
-background: #669966;
-color: #010101;
-padding-top: 20px;
-padding-bottom: 10px;
+    background: #669966;
+    color: #010101;
+    padding-top: 20px;
+    padding-bottom: 10px;
 }
 
 .menu{
@@ -30,15 +30,15 @@ padding-bottom: 10px;
 }
 
 .menu__item{
-margin: 0 40px;
+    margin: 0 40px;
 
 }
 
 
 .menu__item a{
-font-size: 24px;
-font-weight: 400;
-color: #000;
+    font-size: 24px;
+    font-weight: 400;
+    color: #000;
 }
 
 .offer{
@@ -95,23 +95,21 @@ color: #000;
     background: #669966;
 }
 
+.cards__all{
+    background: #669966;
+}
+
 .cards__one{
-    display: block;
-    margin: 0px auto 0;
     font-size: 14px;
     color: #000;
 }
 
 .cards__two{
-    display: block;
-    margin: 0px auto 0;
     font-size: 14px;
     color: #000;
 }
 
 .cards__three{
-    display: block;
-    margin: 0px auto 0;
     font-size: 14px;
     color: #000;
 }
@@ -123,4 +121,28 @@ color: #000;
 a.custom-card,
 a.custom-card:hover {
     color: inherit;
+}
+
+@media screen and (max-width: 992px) {
+    .logo {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    }
+
+
+    .offer__title{
+        text-align: center;
+    }
+
+    .offer__text{
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .chain {
+        width: 100%;
+    }
 }
