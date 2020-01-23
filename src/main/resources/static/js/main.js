@@ -20,6 +20,13 @@ jQuery(document).ready(function ($) {
         ajaxGetTwo()
     });
 
+    $("#route__one__search__form").submit(function (event) {
+        enableOnePathButton(false);
+        event.preventDefault();
+        ajaxGetPathById();
+        ajaxGetPathLength()
+    });
+
 });
 
 function enableSearchMaxButton(flag) {
@@ -29,6 +36,7 @@ function enableSearchMaxButton(flag) {
 function enableSearchMinButton(flag) {
     $("#info__min__form__search").prop("disabled", flag);
 }
+
 
 function searchMaxLengthAjax() {
     var search = {}
@@ -88,6 +96,54 @@ function displayMinLength(data) {
     $('#minlength').val(json);
 }
 
+function enableAllPathButton(flag) {
+    $("#getALlRoutes").prop("disabled", flag);
+}
+
+function enableOnePathButton(flag) {
+    $("#getOneRoute").prop("disabled", flag);
+}
+
+
+function displayToTableAll(data) {
+    $("tr:has(td)").remove();
+    $.each(data, function (i, item) {
+        $('<tr>').html("<td>" + data[i].id + "</td><td>" + data[i].name + "</td><td>" + data[i].objectPhone + "</td>")
+            .appendTo('#routes__all');
+    });
+}
+
+function displayToTableOne(data) {
+    $("#route__one").find("tr:gt(0)").remove();
+    $('<tr>').html("<td>" + data.id + "</td><td>" + data.width + "</td><td>" + data.location + "</td><td id='length'>" + "</td>")
+        .appendTo('#route__one');
+}
+
+
+function ajaxGetPathLength() {
+    var search = {}
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:9090/cyclepath/" + document.getElementById("route__one__searching").value + "/length",
+        data: JSON.stringify(search),
+        dataType: 'json',
+        timeout: 100000,
+        success: function (data) {
+            console.log("SUCCESS: ", data);
+            document.getElementById('length').innerHTML = data
+        },
+
+        error: function (e) {
+            console.log("ERROR: ", e);
+            display(e);
+        },
+        done: function (e) {
+            console.log("DONE");
+            enableOnePathButton(true);
+        }
+    });
+}
+
 
 function ajaxGetTwo() {
     var search = {}
@@ -99,7 +155,7 @@ function ajaxGetTwo() {
         timeout: 100000,
         success: function (data) {
             console.log("SUCCESS: ", data);
-            displayToTable(data);
+            displayToTableAll(data);
         },
         error: function (e) {
             console.log("ERROR: ", e);
@@ -107,22 +163,36 @@ function ajaxGetTwo() {
         },
         done: function (e) {
             console.log("DONE");
-            enableSearchButton(true);
+            enableAllPathButton(true);
         }
     });
-
 }
 
-function enableAllPathButton(flag) {
-    $("#getALlRoutes").prop("disabled", flag);
-}
-
-
-function displayToTable(data) {
-    $("tr:has(td)").remove();
-    $.each(data, function (i, item) {
-        $('<tr>').html("<td>" + data[i].id + "</td><td>" + data[i].name + "</td><td>" + data[i].objectPhone + "</td>")
-            .appendTo('#routes__all');
+function ajaxGetPathById() {
+    var search = {}
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:9090/cyclepath/" + document.getElementById("route__one__searching").value,
+        data: JSON.stringify(search),
+        dataType: 'json',
+        timeout: 100000,
+        success: function (data) {
+            console.log("SUCCESS: ", data);
+            displayToTableOne(data);
+        },
+        error: function (e) {
+            console.log("ERROR: ", e);
+            display(e);
+        },
+        done: function (e) {
+            console.log("DONE");
+            enableOnePathButton(true);
+        }
     });
 }
+
+
+
+
+
 
