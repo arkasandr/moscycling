@@ -16,6 +16,11 @@ import javax.persistence.*;
 @Table(name = "COORDINATE")
 public class Coordinate {
 
+    public Coordinate(double coorX, double coorY) {
+        this.coorX = coorX;
+        this.coorY = coorY;
+    }
+
     @Id
     @Column(name = "COORDINATE_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

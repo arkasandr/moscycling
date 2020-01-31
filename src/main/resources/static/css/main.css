@@ -186,6 +186,75 @@ h2 {
     background: #669966;
 }
 
+.editor__one__search {
+    font-size: 18px;
+    color: #000;
+    padding-bottom: 30px;
+}
+
+.editor__one__search__form__input {
+    background: #fff;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 5px;
+    width: 220px;
+    padding: 4px 0;
+    padding-left: 20px;
+}
+
+.editor__patch {
+    font-size: 18px;
+    color: #000;
+    padding-bottom: 30px;
+}
+
+
+.editor__patch__input {
+    background: #fff;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 5px;
+    width: 220px;
+    padding: 4px 0;
+    padding-left: 20px;
+
+}
+
+.editor__coors__search {
+    font-size: 18px;
+    color: #000;
+    padding-bottom: 30px;
+}
+
+
+.editor__coors__search__form__input {
+    background: #fff;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 5px;
+    width: 220px;
+    padding: 4px 0;
+    padding-left: 20px;
+
+}
+
+.editor__delete {
+    font-size: 18px;
+    color: #000;
+}
+
+
+.editor__delete__input {
+    background: #fff;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 5px;
+    width: 220px;
+    padding: 4px 0;
+    padding-left: 20px;
+
+}
+
 a.custom-card,
 a.custom-card:hover {
     color: inherit;

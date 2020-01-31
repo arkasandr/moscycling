@@ -67,6 +67,84 @@
     </div>
 </header>
 
+<section class="editor">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <table id="editor__one" class="table table-bordered table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">Route ID</th>
+                        <th scope="col">Number</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Object Phone</th>
+                    </tr>
+                    </thead>
+                </table>
+
+                <div class="editor__one__search">
+                    <form class="form-horizontal" id="editor__one__search__form">
+                        <button id="getOneRoute" type="submit" class="btn btn-secondary btn-sm">Find Route by ID</button>
+                        <input type="text" placeholder="Please enter Route ID" class="editor__one__search__form__input" required id="editor__one__searching">
+                        <small id="searchHelpBlock" class="form-text">
+                            Route ID must be 9 numbers long, and must not contain spaces, special characters, or emoji.
+                        </small>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+
+                <div class="editor__patch">
+                    <form class="form-horizontal" id="editor__patch__form">
+                        <button id="editor__patch__number__btn" type="submit" class="btn btn-warning btn-sm">Change Number</button>
+                        <input type="text" placeholder="Please enter new Number" class="editor__patch__input" required id="editor__patch__change__number">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <table id="editor__coors" class="table table-bordered table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">Coordinate X</th>
+                        <th scope="col">Coordinate Y</th>
+                    </tr>
+                    </thead>
+                </table>
+
+                <div class="editor__coors__search">
+                    <form class="form-horizontal" id="editor__coors__search__form">
+                        <button id="editor__getRouteCoors" type="submit" class="btn btn-secondary btn-sm">Find Coordinates by ID</button>
+                        <input type="text" placeholder="Please enter Route ID" class="editor__coors__search__form__input" required id="editor__coors__searching">
+                        <small id="coorsHelpBlock" class="form-text">
+                            Route ID must be 9 numbers long, and must not contain spaces, special characters, or emoji.
+                        </small>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="editor__delete">
+                    <form class="form-horizontal" id="editor__delete__form">
+                        <button id="editor__delete__btn" type="submit" class="btn btn-danger btn-sm">Delete Route by ID</button>
+                        <input type="text" placeholder="Please enter Route ID" class="editor__delete__input" required id="editor__delete__route">
+                        <small id="deleteHelpBlock" class="form-text">
+                            This operation is non-return!
+                        </small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <footer class="footer">
     <div class="container">

@@ -27,6 +27,29 @@ jQuery(document).ready(function ($) {
         ajaxGetPathLength()
     });
 
+    $("#editor__one__search__form").submit(function (event) {
+        enableOnePathButton(false);
+        event.preventDefault();
+        ajaxGetPathByIdEditor();
+    });
+
+    $("#editor__patch__form").submit(function (event) {
+        enableChangeNumberButton(false);
+        event.preventDefault();
+        ajaxChangeNumberEditor();
+    });
+
+    $("#editor__delete__form").submit(function (event) {
+        enableDeleteButton(false);
+        event.preventDefault();
+        ajaxDeleteEditor();
+    });
+
+    $("#editor__coors__search__form").submit(function (event) {
+        enableFindCoorsButton(false);
+        event.preventDefault();
+        ajaxGetCoorsById();
+    });
 });
 
 function enableSearchMaxButton(flag) {
@@ -104,6 +127,17 @@ function enableOnePathButton(flag) {
     $("#getOneRoute").prop("disabled", flag);
 }
 
+function enableChangeNumberButton(flag) {
+    $("#editor__patch__number__btn").prop("disabled", flag);
+}
+
+function enableDeleteButton(flag) {
+    $("#editor__delete__btn").prop("disabled", flag);
+}
+
+function enableFindCoorsButton(flag) {
+    $("#editor__getRouteCoors").prop("disabled", flag);
+}
 
 function displayToTableAll(data) {
     $("tr:has(td)").remove();
@@ -119,6 +153,20 @@ function displayToTableOne(data) {
         .appendTo('#route__one');
 }
 
+
+function displayToTableCoors(data) {
+    $("#editor__coors").find("tr:gt(0)").remove();
+    $.each(data, function (i, item) {
+        $('<tr>').html("<td>" + data[i].coorX + "</td><td>" + data[i].coorY + "</td>")
+            .appendTo('#editor__coors');
+    });
+}
+
+function displayToTableOneEditor(data) {
+    $("#editor__one").find("tr:gt(0)").remove();
+    $('<tr>').html("<td>" + data.id + "</td><td>" + data.number + "</td><td>" + data.name + "</td><td>" + data.objectPhone + "</td>")
+        .appendTo('#editor__one');
+}
 
 function ajaxGetPathLength() {
     var search = {}
@@ -187,6 +235,102 @@ function ajaxGetPathById() {
         done: function (e) {
             console.log("DONE");
             enableOnePathButton(true);
+        }
+    });
+}
+
+
+function ajaxGetPathByIdEditor() {
+    var search = {}
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:9090/cyclepath/" + document.getElementById("editor__one__searching").value,
+        data: JSON.stringify(search),
+        dataType: 'json',
+        timeout: 100000,
+        success: function (data) {
+            console.log("SUCCESS: ", data);
+            displayToTableOneEditor(data);
+        },
+        error: function (e) {
+            console.log("ERROR: ", e);
+            display(e);
+        },
+        done: function (e) {
+            console.log("DONE");
+            enableOnePathButton(true);
+        }
+    });
+}
+
+
+function ajaxChangeNumberEditor() {
+    var newNumber = {number : document.getElementById("editor__patch__change__number").value}
+    $.ajax({
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        type: "PATCH",
+        url: "http://localhost:9090/cyclepath/" + document.getElementById("editor__one__searching").value,
+        data: JSON.stringify(newNumber),
+        timeout: 100000,
+
+        success: function (newNumber) {
+            console.log("SUCCESS: ", newNumber);
+        },
+        error: function (e) {
+            console.log("ERROR: ", e);
+            display(e);
+        },
+        done: function (e) {
+            console.log("DONE");
+            enableOnePathButton(true);
+        }
+    });
+}
+
+function ajaxDeleteEditor() {
+     var deletedId = {}
+    $.ajax({
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        type: "DELETE",
+        url: "http://localhost:9090/cyclepath/" + document.getElementById("editor__delete__route").value,
+        data: JSON.stringify(deletedId),
+        timeout: 100000,
+
+        success: function (deletedId) {
+            console.log("SUCCESS: ", deletedId);
+        },
+        error: function (e) {
+            console.log("ERROR: ", e);
+            display(e);
+        },
+        done: function (e) {
+            console.log("DONE");
+            enableOnePathButton(true);
+        }
+    });
+}
+
+function ajaxGetCoorsById() {
+    var search = {}
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:9090/cyclepath/" + document.getElementById("editor__coors__searching").value + "/coordinates",
+        data: JSON.stringify(search),
+        dataType: 'json',
+        timeout: 100000,
+        success: function (data) {
+            console.log("SUCCESS: ", data);
+            displayToTableCoors(data);
+        },
+        error: function (e) {
+            console.log("ERROR: ", e);
+            display(e);
+        },
+        done: function (e) {
+            console.log("DONE");
+            enableFindCoorsButton(true);
         }
     });
 }

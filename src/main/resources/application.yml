@@ -16,7 +16,7 @@ spring:
       connectionTimeout: 20000
       maximumPoolSize: 5
     platform: postgres
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:moscycling4}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:moscycling7}
     username: ${DB_LOGIN:postgres}
     password: ${DB_PASSWORD:p091ulp}
     driver-class-name: org.postgresql.Driver
