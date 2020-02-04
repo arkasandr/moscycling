@@ -21,8 +21,7 @@ h2 {
 .header {
     background: #669966;
     color: #010101;
-    padding-top: 20px;
-    padding-bottom: 10px;
+    padding: 20px 0 10px 0;
 }
 
 .menu {
@@ -95,11 +94,9 @@ h2 {
 .route__one__search__form__input {
     background: #fff;
     font-size: 16px;
-    font-family: 'Raleway', sans-serif;
     border-radius: 5px;
     width: 220px;
-    padding: 4px 0;
-    padding-left: 20px;
+    padding: 4px 0 4px 20px;
 
 }
 
@@ -169,17 +166,14 @@ h2 {
 .form__input {
     background: #fff;
     font-size: 16px;
-    font-family: 'Raleway', sans-serif;
     border-radius: 5px;
     width: 500px;
-    padding: 4px 0;
-    padding-left: 20px;
+    padding: 4px 0 4px 20px;
 
 }
 
 .form__button {
-    background: #95999c;
-    font-family: 'Raleway', sans-serif;
+
 }
 
 .editor {
@@ -195,11 +189,9 @@ h2 {
 .editor__one__search__form__input {
     background: #fff;
     font-size: 16px;
-    font-family: 'Raleway', sans-serif;
     border-radius: 5px;
     width: 220px;
-    padding: 4px 0;
-    padding-left: 20px;
+    padding: 4px 0 4px 20px;
 }
 
 .editor__patch {
@@ -212,11 +204,9 @@ h2 {
 .editor__patch__input {
     background: #fff;
     font-size: 16px;
-    font-family: 'Raleway', sans-serif;
     border-radius: 5px;
     width: 220px;
-    padding: 4px 0;
-    padding-left: 20px;
+    padding: 4px 0 4px 20px;
 
 }
 
@@ -230,11 +220,9 @@ h2 {
 .editor__coors__search__form__input {
     background: #fff;
     font-size: 16px;
-    font-family: 'Raleway', sans-serif;
     border-radius: 5px;
     width: 220px;
-    padding: 4px 0;
-    padding-left: 20px;
+    padding: 4px 0 4px 20px;
 
 }
 
@@ -247,11 +235,9 @@ h2 {
 .editor__delete__input {
     background: #fff;
     font-size: 16px;
-    font-family: 'Raleway', sans-serif;
     border-radius: 5px;
     width: 220px;
-    padding: 4px 0;
-    padding-left: 20px;
+    padding: 4px 0 4px 20px;
 
 }
 

@@ -7,7 +7,7 @@
 
     <title>Moscycling</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
 
 </head>
@@ -52,10 +52,12 @@
                         Choose Your Route...
                     </h2>
                 </div>
-                <p class="offer__text">
-                    All official Moscow cyclepathes in one place. Get a bike and choose Your route. <br> We miss the
-                    item? Want to create own? <br> Click Editor and improve this mistake!
-                </p>
+                <div>
+                    <p class="offer__text">
+                        All official Moscow cyclepathes in one place. Get a bike and choose Your route. <br> We miss the
+                        item? Want to create own? <br> Click Editor and improve this mistake!
+                    </p>
+                </div>
             </div>
 
             <div class="col-lg-7 ml-auto">
@@ -71,7 +73,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 offset-md-1">
-                <table id="editor__one" class="table table-bordered table-sm">
+                <table id="editor-one" class="table table-bordered table-sm">
                     <thead>
                     <tr>
                         <th scope="col">Route ID</th>
@@ -83,9 +85,11 @@
                 </table>
 
                 <div class="editor__one__search">
-                    <form class="form-horizontal" id="editor__one__search__form">
-                        <button id="getOneRoute" type="submit" class="btn btn-secondary btn-sm">Find Route by ID</button>
-                        <input type="text" placeholder="Please enter Route ID" class="editor__one__search__form__input" required id="editor__one__searching">
+                    <form class="form-horizontal" id="editor-one-search-form">
+                        <button id="getOneRoute" type="submit" class="btn btn-secondary btn-sm">Find Route by ID
+                        </button>
+                        <input type="text" placeholder="Please enter Route ID" class="editor__one__search__form__input"
+                               required id="editor-one-searching">
                         <small id="searchHelpBlock" class="form-text">
                             Route ID must be 9 numbers long, and must not contain spaces, special characters, or emoji.
                         </small>
@@ -98,9 +102,12 @@
             <div class="col-md-10 offset-md-1">
 
                 <div class="editor__patch">
-                    <form class="form-horizontal" id="editor__patch__form">
-                        <button id="editor__patch__number__btn" type="submit" class="btn btn-warning btn-sm">Change Number</button>
-                        <input type="text" placeholder="Please enter new Number" class="editor__patch__input" required id="editor__patch__change__number">
+                    <form class="form-horizontal" id="editor-patch-form">
+                        <button id="editor-patch-number-btn" type="submit" class="btn btn-warning btn-sm">Change
+                            Number
+                        </button>
+                        <input type="text" placeholder="Please enter new Number" class="editor__patch__input" required
+                               id="editor-patch-change-number">
                     </form>
                 </div>
             </div>
@@ -108,7 +115,7 @@
 
         <div class="row">
             <div class="col-md-10 offset-md-1">
-                <table id="editor__coors" class="table table-bordered table-sm">
+                <table id="editor-coors" class="table table-bordered table-sm">
                     <thead>
                     <tr>
                         <th scope="col">Coordinate X</th>
@@ -118,9 +125,12 @@
                 </table>
 
                 <div class="editor__coors__search">
-                    <form class="form-horizontal" id="editor__coors__search__form">
-                        <button id="editor__getRouteCoors" type="submit" class="btn btn-secondary btn-sm">Find Coordinates by ID</button>
-                        <input type="text" placeholder="Please enter Route ID" class="editor__coors__search__form__input" required id="editor__coors__searching">
+                    <form class="form-horizontal" id="editor-coors-search-form">
+                        <button id="editor-getRouteCoors" type="submit" class="btn btn-secondary btn-sm">Find
+                            Coordinates by ID
+                        </button>
+                        <input type="text" placeholder="Please enter Route ID"
+                               class="editor__coors__search__form__input" required id="editor-coors-searching">
                         <small id="coorsHelpBlock" class="form-text">
                             Route ID must be 9 numbers long, and must not contain spaces, special characters, or emoji.
                         </small>
@@ -133,9 +143,12 @@
         <div class="row">
             <div class="col-md-10 offset-md-1">
                 <div class="editor__delete">
-                    <form class="form-horizontal" id="editor__delete__form">
-                        <button id="editor__delete__btn" type="submit" class="btn btn-danger btn-sm">Delete Route by ID</button>
-                        <input type="text" placeholder="Please enter Route ID" class="editor__delete__input" required id="editor__delete__route">
+                    <form class="form-horizontal" id="editor-delete-form">
+                        <button id="editor-delete-btn" type="submit" class="btn btn-danger btn-sm">Delete Route by
+                            ID
+                        </button>
+                        <input type="text" placeholder="Please enter Route ID" class="editor__delete__input" required
+                               id="editor-delete-route">
                         <small id="deleteHelpBlock" class="form-text">
                             This operation is non-return!
                         </small>
@@ -162,18 +175,23 @@
         </div>
         <div class="row">
             <div class="col-lg-9 m-auto">
-                <form  class="form" id="form__email">
+                <form class="form" id="form-email">
                     <input type="email" placeholder="Please enter Your email" class="form__input" required>
                     <button type="submit" class="form_button btn-secondary btn-sm">SUBMIT</button>
                 </form>
             </div>
         </div>
     </div>
-</footer></footer>
+</footer>
+</footer>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/main.js"></script>
 
 </body>
 </html>
