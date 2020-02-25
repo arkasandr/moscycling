@@ -36,6 +36,7 @@ public class CyclePathController {
         return cyclePathService.getAllPath();
     }
 
+
     /**
      * Метод находит все id велодорожек CyclePath
      *

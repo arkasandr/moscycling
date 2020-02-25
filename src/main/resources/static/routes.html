@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, shrink-to-fit=no">
+
+    <title>Moscycling</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <img src="img/logo.png" alt="moscycling" class="logo">
+            </div>
+
+            <div class="col-lg-7 ml-auto">
+                <nav>
+                    <ul class="menu d-flex justify-content-center">
+                        <li class="menu__item">
+                            <a href="index.html">
+                                Home
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="routes.html">
+                                Routes
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="editor.html">
+                                Editor
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-3">
+                <div class="offer">
+                    <h2 class="offer__title">
+                        Choose Your Route...
+                    </h2>
+                </div>
+                <div>
+                    <p class="offer__text">
+                        All official Moscow cyclepathes in one place. Get a bike and choose Your route. <br> We miss the
+                        item? Want to create own? <br> Click Editor and improve this mistake!
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-7 ml-auto">
+                <img src="img/chain.png" alt="mchain" class="chain">
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<section class="routes">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <table id="routes-all" class="table table-bordered table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">Route ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Object Phone</th>
+                    </tr>
+                    </thead>
+                </table>
+
+                <div class="routes__search">
+                    <form class="form-horizontal" id="routes-search-form">
+                        <button id="getALlRoutes" type="submit" class="btn btn-secondary btn-sm">Get All Routes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <table id="route-one" class="table table-bordered table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">Route ID</th>
+                        <th scope="col">Width</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Length</th>
+                    </tr>
+                    </thead>
+                </table>
+
+                <div class="route__one__search">
+                    <form class="form-horizontal" id="route-one-search-form">
+                        <button id="getOneRoute" type="submit" class="btn btn-secondary btn-sm">Find Route by ID
+                        </button>
+                        <input type="text" placeholder="Please enter Route ID" class="route__one__search__form__input"
+                               required id="route-one-searching">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="info">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 ml-auto">
+                <div class="info__max">
+                    <form class="form-horizontal" id="info-max-form">
+                        <div class="form-group form-group-lg">
+                            <label class="control-label">Max Route Length</label>
+                            <input type=text class="form-control" id="maxlength">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" id="info-max-form-search"
+                                    class="btn btn-secondary btn-sm">Search
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3 mr-auto">
+                <div class="info__min">
+                    <form class="form-horizontal" id="info-min-form">
+                        <div class="form-group form-group-lg">
+                            <label class="control-label">Min Route Length</label>
+                            <input type=text class="form-control" id="minlength">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" id="info-min-form-search"
+                                    class="btn btn-secondary btn-sm">Search
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 m-auto">
+                <div class="title">
+                    <h2 class="title__main">
+                        Contact Us
+                    </h2>
+                </div>
+                <p class="title__text">
+                    Subscribe now to receive free notifications on new releases of our software product!
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 m-auto">
+                <form class="form" id="form-email">
+                    <input type="email" placeholder="Please enter Your email" class="form__input" required>
+                    <button type="submit" class="form_button btn-secondary btn-sm">SUBMIT</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

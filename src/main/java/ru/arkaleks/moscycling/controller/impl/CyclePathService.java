@@ -180,7 +180,7 @@ public class CyclePathService {
      * @throws
      */
     public double getCycleLength(Integer id) {
-        double result = 0;
+        double result;
         List<Double> sum = new ArrayList<>();
         List<Double> coors = new ArrayList<>();
         List<Coordinate> coordinates = new ArrayList<>();

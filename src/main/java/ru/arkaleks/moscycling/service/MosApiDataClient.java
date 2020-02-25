@@ -102,6 +102,7 @@ public class MosApiDataClient {
             ObjectMapper mapper = new ObjectMapper();
             resultJson = mapper.readValue(
                     new URL("https://apidata.mos.ru/v1/datasets/897/rows?api_key=" + apiKey + "&$top=10"),
+//                    new URL("https://apidata.mos.ru/v1/datasets/897/rows?api_key=" + apiKey + "&$all"),
                     new TypeReference<List<CyclePathDtoJson>>() {
                     });
             for (CyclePathDtoJson cp : resultJson) {
