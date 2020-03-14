@@ -50,6 +50,12 @@ jQuery(document).ready(function ($) {
         event.preventDefault();
         ajaxGetCoorsById();
     });
+
+    $('#login-username-form').submit(function (event) {
+        enableLoginButton(false);
+        event.preventDefault();
+        ajaxLogin();
+    });
 });
 
 function enableSearchMaxButton(flag) {
@@ -131,6 +137,10 @@ function enableDeleteButton(flag) {
 
 function enableFindCoorsButton(flag) {
     $('#editor-getRouteCoors').prop("disabled", flag);
+}
+
+function enableLoginButton(flag) {
+    $('#login-username-form-login').prop("disabled", flag);
 }
 
 function displayToTableAll(data) {
@@ -309,7 +319,33 @@ function ajaxGetCoorsById() {
             enableFindCoorsButton(true);
         }
     });
+
 }
+
+
+    function ajaxLogin() {
+        var username = {String: document.getElementById('username').value}
+        var password = {String: document.getElementById('password').value}
+        $.ajax({
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            type: "POST",
+            url: "http://localhost:9090/login",
+            data: JSON.stringify(username),
+            timeout: 100000,
+
+            success: function (username) {
+                console.log("SUCCESS: ", username);
+            },
+            error: function (e) {
+                console.log("ERROR: ", e);
+            },
+            done: function (e) {
+                console.log("DONE");
+                enableLoginButton(true);
+            }
+        });
+    }
 
 
 

@@ -18,7 +18,7 @@ spring:
     platform: postgres
     url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:moscycling6}
     username: ${DB_LOGIN:postgres}
-    password: ${DB_PASSWORD:p091ulp}
+    password: ${DB_PASSWORD:gardavan091}
     driver-class-name: org.postgresql.Driver
 server:
   port: 9090

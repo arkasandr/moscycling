@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import ru.arkaleks.moscycling.service.AjaxAuthenticationProvider;
 import ru.arkaleks.moscycling.service.UserService;
 
 /**
@@ -33,14 +34,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
     }
 
+    @Autowired
+    private AjaxAuthenticationProvider ajaxProvider;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(ajaxProvider);
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .authorizeRequests().anyRequest().authenticated()
+                .authorizeRequests()
+                .antMatchers("/resources/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
-                .httpBasic();
+                .formLogin()
+                .loginPage("/login.html")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();
+               // .httpBasic();
     }
 
 }
