@@ -30,6 +30,10 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserRole> userRole;
 
+    public String getUsername() {
+        return username;
+    }
+
     public String getPassword() {
         return password;
     }

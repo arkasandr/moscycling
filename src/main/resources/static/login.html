@@ -17,30 +17,37 @@
         <div class="row">
             <div class="col-md-3 ml-auto">
                 <div class="login__user">
-                    <form class="form-horizontal" id="login-username-form">
+                    <form class="form-horizontal" id="login-username-form" method="POST" action="/login">
                         <div class="form-group form-group-lg">
                             <label class="control-label">Username</label>
-                            <input type=text class="form-control" placeholder="Please enter username"  id="username">
+                            <input type=text class="form-control" placeholder="Please enter username"
+                                   id="username" name = "username">
                         </div>
+                        <div class="form-group form-group-lg">
+                            <label class="control-label">Password</label>
+                            <input type=text class="form-control" placeholder="Please enter password"
+                                   id="password" name="password">
+                        </div>
+
                         <div class="form-group">
                             <button type="submit" id="login-username-form-login"
-                                    class="btn btn-secondary btn-sm">login
+                                    class="btn btn-secondary btn-sm">Login
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="col-md-3 mr-auto">
-                <div class="login__password">
-                    <form class="form-horizontal" id="login-password-form">
-                        <div class="form-group form-group-lg">
-                            <label class="control-label">Password</label>
-                            <input type=text class="form-control" placeholder="Please enter password" id="password">
-                        </div>
-                    </form>
-                </div>
-                <div id="feedback"> Here will be json</div>
-            </div>
+            <!--<div class="col-md-3 mr-auto">-->
+                <!--<div class="login__password">-->
+                    <!--<form class="form-horizontal" id="login-password-form">-->
+                        <!--<div class="form-group form-group-lg">-->
+                            <!--<label class="control-label">Password</label>-->
+                            <!--<input type=text class="form-control" placeholder="Please enter password" id="password">-->
+                        <!--</div>-->
+                    <!--</form>-->
+                <!--</div>-->
+                <!--<div id="feedback"> Here will be json</div>-->
+            <!--</div>-->
         </div>
     </div>
 </section>

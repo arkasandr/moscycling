@@ -16,20 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Transactional
 public class CustomLoginController {
 
-
     private AuthenticationManager authenticationManager;
 
-    @GetMapping("/cyclepath/login")
+    @GetMapping("/login")
     public String login() {
         System.out.println("My login controller");
-//        System.out.println("User name is " + name);
-//        System.out.println("Passwird is " + password);
-//        Authentication request = new UsernamePasswordAuthenticationToken(name, password);
-//
-//        Authentication result = authenticationManager.authenticate(request);
-//        System.out.println(result.getPrincipal());
-//        System.out.println(result.getAuthorities());
-//        SecurityContextHolder.getContext().setAuthentication(result);
         return "ok";
     }
 
