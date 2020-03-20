@@ -47,6 +47,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring()
                 .antMatchers("/**/*.css")
                 .antMatchers("/**/*.js")
+                .antMatchers("/**/*.png")
+                .antMatchers("/**/*.ico")
+
                 ;
     }
 
@@ -67,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login.html")
                 .permitAll()
-                .defaultSuccessUrl("/index")
+                .defaultSuccessUrl("/index.html")
                 .failureUrl("/login.html?error=true")
                 .permitAll()
                 .and()

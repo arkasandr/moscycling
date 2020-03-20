@@ -1,10 +1,14 @@
 package ru.arkaleks.moscycling.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
 
 /**
  * @author Alex Arkashev (arkasandr@gmail.com)
@@ -18,10 +22,12 @@ public class CustomLoginController {
 
     private AuthenticationManager authenticationManager;
 
-    @GetMapping("/login")
-    public String login() {
+    @PostMapping("/login")
+    public ResponseEntity login() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
         System.out.println("My login controller");
-        return "ok";
+        return ResponseEntity.ok(new HashMap<>());
     }
 
 }

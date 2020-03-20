@@ -5,12 +5,9 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-import ru.arkaleks.moscycling.model.User;
-import ru.arkaleks.moscycling.model.UserRole;
-
-import java.util.List;
 
 @Component
 public class AjaxAuthenticationProvider implements AuthenticationProvider {
@@ -26,7 +23,9 @@ public class AjaxAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
-        User user = (User) userService.loadUserByUsername(username);
+       // User user = (User) userService.loadUserByUsername(username);
+        UserDetails user = userService.loadUserByUsername(username);
+        System.out.println(user.getUsername() + " is authenticate!");
         if(user == null) {
             throw new BadCredentialsException("1000");
         }
@@ -34,9 +33,9 @@ public class AjaxAuthenticationProvider implements AuthenticationProvider {
             throw new BadCredentialsException("1000");
         }
 
-        List<UserRole> roles = user.getUserRole();
+       // List<UserRole> roles = user.getAuthorities();
 
-        return new UsernamePasswordAuthenticationToken(username, password, roles);
+        return new UsernamePasswordAuthenticationToken(username, password);
     }
 
     @Override
