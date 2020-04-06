@@ -30,5 +30,15 @@ public class CustomLoginController {
         return ResponseEntity.ok(new HashMap<>());
     }
 
+//    @RolesAllowed("ROLE_ADMIN")
+//    @GetMapping("/editor")
+//    public ResponseEntity editorPage() {
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.add("Content-Type", "application/json");
+//        System.out.println("Enter editor page");
+//        return ResponseEntity.ok(new HashMap<>());
+//    }
+
+
 }
 

@@ -5,9 +5,14 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @Component
 public class AjaxAuthenticationProvider implements AuthenticationProvider {
@@ -33,9 +38,12 @@ public class AjaxAuthenticationProvider implements AuthenticationProvider {
             throw new BadCredentialsException("1000");
         }
 
-       // List<UserRole> roles = user.getAuthorities();
+        List<GrantedAuthority> roles = user.getAuthorities().stream().collect(toList());
+        for(GrantedAuthority role : roles) {
+            System.out.println(role.getAuthority() + "real role");
+        }
 
-        return new UsernamePasswordAuthenticationToken(username, password);
+        return new UsernamePasswordAuthenticationToken(username, password, roles);
     }
 
     @Override

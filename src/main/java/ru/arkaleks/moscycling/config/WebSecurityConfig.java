@@ -21,18 +21,11 @@ import ru.arkaleks.moscycling.service.AjaxAuthenticationProvider;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    @Autowired
-//    private UserService userService;
-
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-//    @Autowired
-//    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
-//    }
 
     @Autowired
     private AjaxAuthenticationProvider ajaxProvider;
@@ -60,6 +53,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login")
                 .permitAll()
+                .antMatchers("/editor.html")
+                .hasRole("ADMIN")
                 .and()
                 .authorizeRequests()
                 .antMatchers("/resources/**")
@@ -71,12 +66,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login.html")
                 .permitAll()
                 .defaultSuccessUrl("/index.html")
-                .failureUrl("/login.html?error=true")
-                .permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/error.html")
                 .and()
                 .logout()
-                .permitAll();
-               // .httpBasic();
+                .logoutSuccessUrl("/customLogout.html")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .permitAll()
+                .and()
+                .rememberMe()
+                .rememberMeCookieName("my-cookie")
+                .tokenValiditySeconds(60);
+
     }
 
 }
