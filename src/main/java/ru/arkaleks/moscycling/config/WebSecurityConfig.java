@@ -8,8 +8,16 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.AbstractRememberMeServices;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import ru.arkaleks.moscycling.service.AjaxAuthenticationProvider;
+import ru.arkaleks.moscycling.service.UserService;
+
+import javax.sql.DataSource;
 
 /**
  * @author Alex Arkashev (arkasandr@gmail.com)
@@ -26,9 +34,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Autowired
+    UserService userService;
 
     @Autowired
     private AjaxAuthenticationProvider ajaxProvider;
+
+    @Autowired
+    DataSource dataSource;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -45,6 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 ;
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -68,17 +82,47 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/index.html")
                 .and()
                 .exceptionHandling().accessDeniedPage("/error.html")
+//                .and()
+//                .rememberMe()
+//                .key("uniqueandsecrete")
+//                .rememberMeParameter("remember-me")
+//                .tokenRepository(persistentTokenRepository())
+//                .tokenValiditySeconds(1440)
                 .and()
                 .logout()
-                .logoutSuccessUrl("/customLogout.html")
+                .logoutUrl("/customLogout.html")
+                .logoutSuccessUrl("/login.html")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .permitAll()
+                .and().rememberMe()
+                .rememberMeServices(rememberMeServices())
                 .and()
-                .rememberMe()
-                .rememberMeCookieName("my-cookie")
-                .tokenValiditySeconds(60);
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//                .and()
 
+//                .rememberMe()
+//                .rememberMeCookieName("my-cookie")
+//                .tokenValiditySeconds(60);
+
+    }
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
+        db.setDataSource(dataSource);
+        return db;
+    }
+
+    @Bean
+    public AbstractRememberMeServices rememberMeServices() {
+        PersistentTokenBasedRememberMeServices rememberMeServices =
+                new PersistentTokenBasedRememberMeServices("posc", userService, persistentTokenRepository());
+        rememberMeServices.setAlwaysRemember(true);
+        rememberMeServices.setCookieName("remember-me-posc");
+        rememberMeServices.setTokenValiditySeconds(1209600);
+        return rememberMeServices;
     }
 
 }

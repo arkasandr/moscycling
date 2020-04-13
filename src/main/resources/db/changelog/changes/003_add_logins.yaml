@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: postgres
+
+  - changeSet:
+      id: 3
+      author: Alex Arkashev
+      changes:
+        - createTable:
+            tableName: persistent_logins
+            columns:
+              - column:
+                  name: username
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: series
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: token
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_used
+                  type: timestamp
+                  constraints:
+                    nullable: false
+
+
+
