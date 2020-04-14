@@ -26,17 +26,10 @@ import java.util.HashMap;
 @Transactional
 public class CustomLoginController {
 
-//    @Autowired
-//    UserService userService;
-//
-//    @Autowired
-//    DataSource dataSource;
-
-
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    RememberMeServices rememberMeServices;
+    private RememberMeServices rememberMeServices;
 
     @PostMapping("/login")
     public ResponseEntity login(final HttpServletRequest request, final HttpServletResponse response) {
@@ -48,25 +41,6 @@ public class CustomLoginController {
         System.out.println("My login controller");
         return ResponseEntity.ok(new HashMap<>());
     }
-
-
-//    @Bean
-//    public AbstractRememberMeServices rememberMeServices() {
-//        PersistentTokenBasedRememberMeServices rememberMeServices =
-//                new PersistentTokenBasedRememberMeServices("posc", userService, persistentTokenRepository());
-//        rememberMeServices.setAlwaysRemember(true);
-//        rememberMeServices.setCookieName("remember-me-posc");
-//        rememberMeServices.setTokenValiditySeconds(1209600);
-//        return rememberMeServices;
-//    }
-//
-//    @Bean
-//    public PersistentTokenRepository persistentTokenRepository() {
-//        JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
-//        db.setDataSource(dataSource);
-//        return db;
-//    }
-
 
 }
 

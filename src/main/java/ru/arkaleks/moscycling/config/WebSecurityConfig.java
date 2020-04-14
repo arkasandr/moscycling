@@ -3,6 +3,7 @@ package ru.arkaleks.moscycling.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.RememberMeAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -29,6 +30,8 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    public static final String KEY = "posc";
+
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -45,7 +48,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(ajaxProvider);
+
+        auth
+                .authenticationProvider(ajaxProvider)
+                .authenticationProvider(new RememberMeAuthenticationProvider(KEY));
     }
 
     @Override
@@ -56,9 +62,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/*.png")
                 .antMatchers("/**/*.ico")
 
-                ;
+        ;
     }
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -82,30 +87,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/index.html")
                 .and()
                 .exceptionHandling().accessDeniedPage("/error.html")
-//                .and()
-//                .rememberMe()
-//                .key("uniqueandsecrete")
-//                .rememberMeParameter("remember-me")
-//                .tokenRepository(persistentTokenRepository())
-//                .tokenValiditySeconds(1440)
+                .and()
+                .rememberMe()
+                .rememberMeServices(rememberMeServices())
                 .and()
                 .logout()
-                .logoutUrl("/customLogout.html")
+                .logoutUrl("/customlogout.html")
                 .logoutSuccessUrl("/login.html")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .permitAll()
-                .and().rememberMe()
-                .rememberMeServices(rememberMeServices())
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//                .and()
-
-//                .rememberMe()
-//                .rememberMeCookieName("my-cookie")
-//                .tokenValiditySeconds(60);
-
     }
 
     @Bean
@@ -118,7 +112,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public AbstractRememberMeServices rememberMeServices() {
         PersistentTokenBasedRememberMeServices rememberMeServices =
-                new PersistentTokenBasedRememberMeServices("posc", userService, persistentTokenRepository());
+                new PersistentTokenBasedRememberMeServices(KEY, userService, persistentTokenRepository());
         rememberMeServices.setAlwaysRemember(true);
         rememberMeServices.setCookieName("remember-me-posc");
         rememberMeServices.setTokenValiditySeconds(1209600);
