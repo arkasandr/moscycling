@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
@@ -91,11 +93,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .logoutSuccessUrl("/login.html")
             .and()
             .exceptionHandling()
-            .accessDeniedPage("/error.html")
+                .accessDeniedHandler(accessDeniedHandler())
+                .authenticationEntryPoint(myHttp403ForbiddenEntryPoint())
             .and()
-
             .rememberMe()
             .rememberMeServices(rememberMeServices());
+    }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler(){
+        return new MyAccessDeniedHandler();
+    }
+
+    @Bean
+    public AuthenticationEntryPoint myHttp403ForbiddenEntryPoint() {
+        return new MyHttp403ForbiddenEntryPoint();
     }
 
     @Bean

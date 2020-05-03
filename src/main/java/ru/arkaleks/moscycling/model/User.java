@@ -19,6 +19,7 @@ import java.util.List;
 @Table(name = "USERDATA")
 public class User {
 
+
     @Id
     @Column(name = "USER_ID")
     private int id;

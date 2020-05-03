@@ -19,7 +19,6 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         rememberMeServices.loginSuccess(request, response, authentication);
-
         response.setContentType("application/json");
         val writer = response.getWriter();
         writer.write("{}");

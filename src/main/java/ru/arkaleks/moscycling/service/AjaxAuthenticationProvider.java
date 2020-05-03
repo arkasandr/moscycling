@@ -28,33 +28,26 @@ public class AjaxAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
-       // User user = (User) userService.loadUserByUsername(username);
         UserDetails user = userService.loadUserByUsername(username);
         System.out.println(user.getUsername() + " is authenticate!");
-        if(user == null) {
+        if (user == null) {
             throw new BadCredentialsException("1000");
         }
-        if(!encoder.matches(password, user.getPassword())) {
+        if (!encoder.matches(password, user.getPassword())) {
             throw new BadCredentialsException("1000");
         }
 
         List<GrantedAuthority> roles = user.getAuthorities().stream().collect(toList());
-        for(GrantedAuthority role : roles) {
+        for (GrantedAuthority role : roles) {
             System.out.println(role.getAuthority() + "real role");
         }
 
         return new UsernamePasswordAuthenticationToken(username, password, roles);
     }
 
-//    @Override
-//    public boolean supports(Class<?> authentication) {
-//        return authentication.equals(UsernamePasswordAuthenticationToken.class);
-//    }
-
     @Override
     public boolean supports(Class<?> authentication) {
-        boolean result = UsernamePasswordAuthenticationToken.class
-                .isAssignableFrom(authentication);
-        return result;
+        return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
+
 }
