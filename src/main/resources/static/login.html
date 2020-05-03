@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, shrink-to-fit=no">
+
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+<section class="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 m-auto">
+                <div class="login__user">
+                    <form class="form-horizontal" id="login-username-form" method="POST" action="/login">
+                        <div class="form-group form-group-lg">
+                            <label class="control-label">Username</label>
+                            <input type=text class="form-control" placeholder="Please enter username"
+                                   id="username" name="username">
+                        </div>
+                        <div class="form-group form-group-lg">
+                            <label class="control-label">Password</label>
+                            <input type=text class="form-control" placeholder="Please enter password"
+                                   id="password" name="password">
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" id="login-username-form-login"
+                                    class="btn btn-secondary btn-sm">Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 m-auto">
+                <div class="title">
+                    <h2 class="title__main">
+                        Contact Us
+                    </h2>
+                </div>
+                <p class="title__text">
+                    Subscribe now to receive free notifications on new releases of our software product!
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 m-auto">
+                <form class="form" id="form__email">
+                    <input type="email" placeholder="Please enter Your email" class="form__input" required>
+                    <button type="submit" class="form_button btn-secondary btn-sm">SUBMIT</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/login.js"></script>
+</body>
+</html>

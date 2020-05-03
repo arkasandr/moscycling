@@ -1,0 +1,103 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: postgres
+
+  - changeSet:
+      id: 2
+      author: Alex Arkashev
+      changes:
+        - createSequence:
+            catalogName: cat
+            cycle: false
+            incrementBy: 1
+            maxValue: 1000
+            minValue: 1
+            schemaName: public
+            sequenceName: user_path_seq
+            startValue: 1
+        - createTable:
+            tableName: userdata
+            columns:
+              - column:
+                  name: user_id
+                  type: int
+                  defaultValueComputed: nextval('user_path_seq')
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(255)
+              - column:
+                  name: password
+                  type: varchar(255)
+        - createTable:
+            tableName: userrole
+            columns:
+              - column:
+                  name: userrole_id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: rolename
+                  type: varchar(255)
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    references: userdata(user_id)
+                    foreignKeyName: fk_userdata_to_userrole
+
+  - changeSet:
+      id: 3
+      author: Alex Arkashev
+      changes:
+        - insert:
+            tableName: userdata
+            columns:
+              - column:
+                  name: username
+                  value: "admin"
+              - column:
+                  name: password
+                  value: "$2a$10$V/4RNN1yDkgXdmT0Cx94pOpGpv7.Mi0fBHfqxS2dcTdkc245j/klW"
+        - insert:
+            tableName: userdata
+            columns:
+              - column:
+                  name: username
+                  value: "user"
+              - column:
+                  name: password
+                  value: "$2a$10$x0OaMtLgKz6hnnknUkgBTulZchUhQ2XzgkyppfsM8RDPjSacBj98y"
+
+  - changeSet:
+      id: 4
+      author: Alex Arkashev
+      changes:
+        - insert:
+            tableName: userrole
+            columns:
+              - column:
+                  name: rolename
+                  value: "ROLE_ADMIN"
+              - column:
+                  name: user_id
+                  valueNumeric: 1
+        - insert:
+            tableName: userrole
+            columns:
+              - column:
+                  name: rolename
+                  value: "ROLE_USER"
+              - column:
+                  name: user_id
+                  valueNumeric: 2
+
+
+
