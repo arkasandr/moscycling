@@ -17,9 +17,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.security.web.authentication.rememberme.AbstractRememberMeServices;
-import org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter;
-import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
+import org.springframework.security.web.authentication.rememberme.*;
 import ru.arkaleks.moscycling.service.AjaxAuthenticationProvider;
 import ru.arkaleks.moscycling.service.UserService;
 
@@ -56,52 +54,58 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-            .authenticationProvider(ajaxProvider)
-            .authenticationProvider(new RememberMeAuthenticationProvider(KEY));
+                .authenticationProvider(ajaxProvider)
+                .authenticationProvider(new RememberMeAuthenticationProvider(KEY));
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
-            .antMatchers("/**/*.css")
-            .antMatchers("/**/*.js")
-            .antMatchers("/**/*.png")
-            .antMatchers("/**/*.ico");
+                .antMatchers("/**/*.css")
+                .antMatchers("/**/*.js")
+                .antMatchers("/**/*.png")
+                .antMatchers("/**/*.ico");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
-            .sessionManagement().sessionCreationPolicy(STATELESS)
-            .and()
-
-            .addFilterBefore(ajaxLoginFilter(), RememberMeAuthenticationFilter.class)
-
-            .authorizeRequests()
-            .antMatchers("/login*")
-            .permitAll()
-            .antMatchers("/editor.html")
-            .hasRole("ADMIN")
-            .antMatchers("/resources/**")
-            .permitAll()
-            .anyRequest()
-            .authenticated()
-            .and()
-            .logout()
-            .logoutUrl("/logout")
-            .logoutSuccessUrl("/login.html")
-            .and()
-            .exceptionHandling()
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(STATELESS)
+                .and()
+                .addFilterBefore(ajaxLoginFilter(), RememberMeAuthenticationFilter.class)
+                .authorizeRequests()
+                .antMatchers("/login*")
+                .permitAll()
+                .antMatchers("/editor.html")
+                .hasRole("ADMIN")
+                .antMatchers("/resources/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .logout()
+                .logoutUrl("/clogout.html")
+                .logoutSuccessUrl("/login.html")
+                .deleteCookies("remember-me-posc")
+                .and()
+                .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler())
                 .authenticationEntryPoint(myHttp403ForbiddenEntryPoint())
-            .and()
-            .rememberMe()
-            .rememberMeServices(rememberMeServices());
+                .and()
+                .rememberMe()
+                .rememberMeServices(rememberMeServices());
     }
 
     @Bean
-    public AccessDeniedHandler accessDeniedHandler(){
+    PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
+        db.setDataSource(dataSource);
+        return db;
+    }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
         return new MyAccessDeniedHandler();
     }
 
@@ -112,8 +116,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public AbstractRememberMeServices rememberMeServices() {
-        TokenBasedRememberMeServices rememberMeServices =
-            new TokenBasedRememberMeServices(KEY, userService);
+        PersistentTokenBasedRememberMeServices rememberMeServices =
+                new PersistentTokenBasedRememberMeServices(KEY, userService, persistentTokenRepository());
         rememberMeServices.setAlwaysRemember(true);
         rememberMeServices.setCookieName("remember-me-posc");
         rememberMeServices.setTokenValiditySeconds(1209600);
