@@ -69,111 +69,88 @@
     </div>
 </header>
 
-<section class="editor">
+<section class="users">
     <div class="container">
         <div class="row">
             <div class="col-md-10 offset-md-1">
-                <table id="editor-one" class="table table-bordered table-sm">
+                <table id="users-all" class="table table-bordered table-sm">
                     <thead>
                     <tr>
-                        <th scope="col">Route ID</th>
-                        <th scope="col">Number</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Object Phone</th>
+                        <th scope="col">User ID</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">User Password</th>
                     </tr>
                     </thead>
                 </table>
 
-                <div class="editor__one__search">
-                    <form class="form-horizontal" id="editor-one-search-form">
-                        <button id="getOneRoute" type="submit" class="btn btn-secondary btn-sm">Find Route by ID
+                <div class="users__all__search">
+                    <form class="form-horizontal" id="users-all-search-form">
+                        <button id="getAllUsers" type="submit" class="btn btn-secondary btn-sm">Find All Users
                         </button>
-                        <input type="text" placeholder="Please enter Route ID" class="editor__one__search__form__input"
-                               required id="editor-one-searching">
-                        <small id="searchHelpBlock" class="form-text">
-                            Route ID must be 9 numbers long, and must not contain spaces, special characters, or emoji.
-                        </small>
                     </form>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-10 offset-md-1">
+        <!--<div class="row">-->
+            <!--<div class="col-md-10 offset-md-1">-->
 
-                <div class="editor__patch">
-                    <form class="form-horizontal" id="editor-patch-form">
-                        <button id="editor-patch-number-btn" type="submit" class="btn btn-warning btn-sm">Change
-                            Number
-                        </button>
-                        <input type="text" placeholder="Please enter new Number" class="editor__patch__input" required
-                               id="editor-patch-change-number">
-                    </form>
-                </div>
-            </div>
-        </div>
+                <!--<div class="editor__patch">-->
+                    <!--<form class="form-horizontal" id="editor-patch-form">-->
+                        <!--<button id="editor-patch-number-btn" type="submit" class="btn btn-warning btn-sm">Change-->
+                            <!--Number-->
+                        <!--</button>-->
+                        <!--<input type="text" placeholder="Please enter new Number" class="editor__patch__input" required-->
+                               <!--id="editor-patch-change-number">-->
+                    <!--</form>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
 
-        <div class="row">
-            <div class="col-md-10 offset-md-1">
-                <table id="editor-coors" class="table table-bordered table-sm">
-                    <thead>
-                    <tr>
-                        <th scope="col">Coordinate X</th>
-                        <th scope="col">Coordinate Y</th>
-                    </tr>
-                    </thead>
-                </table>
+        <!--<div class="row">-->
+            <!--<div class="col-md-10 offset-md-1">-->
+                <!--<table id="editor-coors" class="table table-bordered table-sm">-->
+                    <!--<thead>-->
+                    <!--<tr>-->
+                        <!--<th scope="col">Coordinate X</th>-->
+                        <!--<th scope="col">Coordinate Y</th>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                <!--</table>-->
 
-                <div class="editor__coors__search">
-                    <form class="form-horizontal" id="editor-coors-search-form">
-                        <button id="editor-getRouteCoors" type="submit" class="btn btn-secondary btn-sm">Find
-                            Coordinates by ID
-                        </button>
-                        <input type="text" placeholder="Please enter Route ID"
-                               class="editor__coors__search__form__input" required id="editor-coors-searching">
-                        <small id="coorsHelpBlock" class="form-text">
-                            Route ID must be 9 numbers long, and must not contain spaces, special characters, or emoji.
-                        </small>
-                    </form>
-                </div>
-            </div>
-        </div>
+                <!--<div class="editor__coors__search">-->
+                    <!--<form class="form-horizontal" id="editor-coors-search-form">-->
+                        <!--<button id="editor-getRouteCoors" type="submit" class="btn btn-secondary btn-sm">Find-->
+                            <!--Coordinates by ID-->
+                        <!--</button>-->
+                        <!--<input type="text" placeholder="Please enter Route ID"-->
+                               <!--class="editor__coors__search__form__input" required id="editor-coors-searching">-->
+                        <!--<small id="coorsHelpBlock" class="form-text">-->
+                            <!--Route ID must be 9 numbers long, and must not contain spaces, special characters, or emoji.-->
+                        <!--</small>-->
+                    <!--</form>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
 
 
         <div class="row">
             <div class="col-md-10 offset-md-1">
-                <div class="editor__delete">
-                    <form class="form-horizontal" id="editor-delete-form">
-                        <button id="editor-delete-btn" type="submit" class="btn btn-danger btn-sm">Delete Route by
-                            ID
+                <div class="users__add">
+                    <form class="form-horizontal" id="users-add-form">
+                        <button id="users-add-btn" type="submit" class="btn btn-secondary btn-sm"> Add New User
                         </button>
-                        <input type="text" placeholder="Please enter Route ID" class="editor__delete__input" required
-                               id="editor-delete-route">
-                        <small id="deleteHelpBlock" class="form-text">
-                            This operation is non-return!
-                        </small>
+                        <input type="text" placeholder="Please enter Username" class="users__add__input__username" required
+                               id="user-add-username">
+                        <input type="text" placeholder="Please enter Password" class="users__add__input__password" required
+                               id="user-add-password">
+                        <input type="text" placeholder="Please enter Role" class="users__add__input__role" required
+                               id="user-add-role">
                     </form>
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-12 offset-md-1">
-                <div class="users__link">
-                    <div>
-                        <p class="users-link__text">
-                            If You want to control User information, please click this link
-                            <a href="users.html">
-                                Users
-                            </a>. <br> Be carefull on this page!
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
-
 </section>
 
 <footer class="footer">
@@ -208,7 +185,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/users.js"></script>
 
 </body>
-</html>

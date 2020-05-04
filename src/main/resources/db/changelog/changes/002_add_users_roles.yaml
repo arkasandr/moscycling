@@ -14,7 +14,7 @@ databaseChangeLog:
             maxValue: 1000
             minValue: 1
             schemaName: public
-            sequenceName: user_path_seq
+            sequenceName: user_id_seq
             startValue: 1
         - createTable:
             tableName: userdata
@@ -22,10 +22,10 @@ databaseChangeLog:
               - column:
                   name: user_id
                   type: int
-                  defaultValueComputed: nextval('user_path_seq')
+                  defaultValueComputed: nextval('user_id_seq')
                   constraints:
                     primaryKey: true
-                    nullable: false
+                    nullable: true
               - column:
                   name: username
                   type: varchar(255)
@@ -40,7 +40,7 @@ databaseChangeLog:
                   type: int
                   autoIncrement: true
                   constraints:
-                    nullable: false
+                    nullable: true
                     primaryKey: true
               - column:
                   name: rolename
@@ -49,7 +49,7 @@ databaseChangeLog:
                   name: user_id
                   type: int
                   constraints:
-                    nullable: false
+                    nullable: true
                     references: userdata(user_id)
                     foreignKeyName: fk_userdata_to_userrole
 

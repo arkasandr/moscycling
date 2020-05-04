@@ -1,5 +1,6 @@
 package ru.arkaleks.moscycling.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,10 @@ import javax.persistence.*;
 @Table(name = "USERROLE")
 public class UserRole implements GrantedAuthority {
 
+    public UserRole(String rolename) {
+        this.rolename = rolename;
+    }
+
     @Id
     @Column(name = "USERROLE_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +32,7 @@ public class UserRole implements GrantedAuthority {
     private String rolename;
 
 
-
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID")
     private User user;
@@ -40,6 +45,7 @@ public class UserRole implements GrantedAuthority {
         return rolename;
     }
 
+    @JsonIgnore
     public User getUser() {
         return user;
     }
