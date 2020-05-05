@@ -6,19 +6,12 @@ jQuery(document).ready(function ($) {
         searchAllUsersAjax()
     });
 
-    // $('#users-add-form').submit(function (event) {
-    //     enableAddNewUserButton(false);
-    //     event.preventDefault();
-    //     addNewUserAjax()
-    // });
-
 
     $("#users-add-form").submit(function (event) {
         enableAddNewUserButton(false);
         var username = $("#user-add-username").val();
         var password = $("#user-add-password").val();
         var role = $("#user-add-role").val();
-
         var userDTO = {
             username: username,
             password: password,
@@ -73,29 +66,6 @@ function searchAllUsersAjax() {
     });
 }
 
-// function addNewUserAjax() {
-//     var newNumber = {number: document.getElementById('editor-patch-change-number').value}
-//     $.ajax({
-//         dataType: 'json',
-//         contentType: "application/json; charset=utf-8",
-//         type: "PATCH",
-//         url: "http://localhost:9090/cyclepath/" + document.getElementById('editor-one-searching').value,
-//         data: JSON.stringify(newNumber),
-//         timeout: 100000,
-//
-//         success: function (newNumber) {
-//             console.log("SUCCESS: ", newNumber);
-//         },
-//         error: function (e) {
-//             console.log("ERROR: ", e);
-//         },
-//         done: function (e) {
-//             console.log("DONE");
-//             enableOnePathButton(true);
-//         }
-//     });
-
-
     function addNewUserAjax(json) {
         $.ajax({
             dataType : "json",
@@ -104,9 +74,7 @@ function searchAllUsersAjax() {
             url: "http://localhost:9090/users/adduser",
             data: json,
             timeout: 100000,
-
             success: function () {
-               // window.location = "http://localhost:9090/index.html";
                 console.log("SUCCESS: ", "ok222");
             },
             error: function () {
@@ -116,6 +84,5 @@ function searchAllUsersAjax() {
                 console.log("DONE");
                 enableAddNewUserButton(true);
             }
-
         });
     }

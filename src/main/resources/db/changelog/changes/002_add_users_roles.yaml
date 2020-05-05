@@ -7,22 +7,23 @@ databaseChangeLog:
       id: 2
       author: Alex Arkashev
       changes:
-        - createSequence:
-            catalogName: cat
-            cycle: false
-            incrementBy: 1
-            maxValue: 1000
-            minValue: 1
-            schemaName: public
-            sequenceName: user_id_seq
-            startValue: 1
+#        - createSequence:
+#            catalogName: cat
+#            cycle: false
+#            incrementBy: 1
+#            maxValue: 1000
+#            minValue: 1
+#            schemaName: public
+#            sequenceName: user_id_seq
+#            startValue: 1
         - createTable:
             tableName: userdata
             columns:
               - column:
                   name: user_id
                   type: int
-                  defaultValueComputed: nextval('user_id_seq')
+                  autoIncrement: true
+#                  defaultValueComputed: nextval('user_id_seq')
                   constraints:
                     primaryKey: true
                     nullable: true

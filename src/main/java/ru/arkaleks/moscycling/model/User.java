@@ -30,6 +30,15 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//  @ManyToMany(cascade = {
+//          CascadeType.PERSIST,
+//          CascadeType.MERGE
+//  })
+//    @JoinTable(
+//            name = "USERROLE",
+//            joinColumns = { @JoinColumn(name = "USER_ID") },
+//            inverseJoinColumns = { @JoinColumn(name = "USERROLE_ID") }
+//    )
     private List<UserRole> userRole;
 
     public String getUsername() {

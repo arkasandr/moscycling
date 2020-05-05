@@ -43,6 +43,7 @@ public class UserController {
      */
     @PutMapping("/users/adduser")
     UserDTO saveOrUpdate(@RequestBody User newUser) {
+   //      userControlService.addNewUser(newUser);
         return userControlService.saveWithUserRole(newUser);
     }
 
