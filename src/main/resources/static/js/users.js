@@ -66,23 +66,23 @@ function searchAllUsersAjax() {
     });
 }
 
-    function addNewUserAjax(json) {
-        $.ajax({
-            dataType : "json",
-            contentType: "application/json; charset=utf-8",
-            type: "PUT",
-            url: "http://localhost:9090/users/adduser",
-            data: json,
-            timeout: 100000,
-            success: function () {
-                console.log("SUCCESS: ", "ok222");
-            },
-            error: function () {
-                alert("Registration error");
-            },
-            done: function (e) {
-                console.log("DONE");
-                enableAddNewUserButton(true);
-            }
-        });
-    }
+function addNewUserAjax(json) {
+    $.ajax({
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        type: "PUT",
+        url: "http://localhost:9090/users/addnewuser",
+        data: json,
+        timeout: 100000,
+        success: function () {
+            console.log("SUCCESS: ", "ok222");
+        },
+        error: function () {
+            alert("Registration error");
+        },
+        done: function (e) {
+            console.log("DONE");
+            enableAddNewUserButton(true);
+        }
+    });
+}

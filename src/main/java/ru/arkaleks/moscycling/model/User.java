@@ -19,9 +19,13 @@ import java.util.List;
 @Table(name = "USERDATA")
 public class User {
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
     private int id;
 
@@ -30,30 +34,6 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//  @ManyToMany(cascade = {
-//          CascadeType.PERSIST,
-//          CascadeType.MERGE
-//  })
-//    @JoinTable(
-//            name = "USERROLE",
-//            joinColumns = { @JoinColumn(name = "USER_ID") },
-//            inverseJoinColumns = { @JoinColumn(name = "USERROLE_ID") }
-//    )
     private List<UserRole> userRole;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public List<UserRole> getUserRole() {
-        return userRole;
-    }
 }

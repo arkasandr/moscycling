@@ -13,8 +13,8 @@ import ru.arkaleks.moscycling.model.UserRole;
 import ru.arkaleks.moscycling.repository.UserRepository;
 import ru.arkaleks.moscycling.repository.UserRoleRepository;
 
-import java.util.Arrays;
 import java.util.List;
+
 
 /**
  * @author Alex Arkashev (arkasandr@gmail.com)
@@ -38,10 +38,10 @@ public class UserControlService {
     private UserMapper userMapper = UserMapper.INSTANCE;
 
     /**
-     * Метод находит все CyclePath
+     * Метод находит всех пользователей User
      *
      * @param
-     * @return List<CyclePathDto>
+     * @return List<UserDto>
      * @throws
      */
     public List<UserDTO> getAllUsers() {
@@ -49,25 +49,41 @@ public class UserControlService {
     }
 
 
-    public UserDTO saveWithUserRole(User newUser) {
-        newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
-       // userRepository.save(newUser);
-        //newUser.setUserRole(Arrays.asList(userRoleRepository.findByRolename("ROLE_ADMIN")));
-    //    UserRole role = newUser.getUserRole().get(0).setId(userRepository.findByUsername(newUser.getUsername()).get().getId());
-        userRepository.save(newUser);
-        return userMapper.mapToUserDTO(newUser);
+    /**
+     * Метод сохраняет нового пользователя User без роли UserRole
+     *
+     * @param
+     * @return
+     * @throws
+     */
+    public void saveUserWithoutUserRole(User newUser) {
+        User addUser = new User(newUser.getUsername(), newUser.getPassword());
+        addUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
+        userRepository.save(addUser);
     }
 
-//    /**
-//     * Метод обновляет данные пользователя User
-//     *
-//     * @param
-//     * @return UserDto
-//     * @throws
-//     */
-//    public UserDTO addNewUser(User newUser) {
-//        newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
-//        userRepository.save(newUser);
-//        return userMapper.mapToUserDTO(newUser);
-//    }
+    /**
+     * Метод устанавливает роль UserRole для добавляемого  пользователя User
+     *
+     * @param
+     * @return
+     * @throws
+     */
+    public void setUserRoleToUser(User newUser) {
+        List<UserRole> roles = newUser.getUserRole();
+        roles.get(0).setUser(userRepository.findByUsername(newUser.getUsername()).get());
+        userRepository.findByUsername(newUser.getUsername()).get().setUserRole(roles);
+    }
+
+    /**
+     * Метод добавляет нового пользователя User в приложение
+     *
+     * @param
+     * @return UserDTO
+     * @throws
+     */
+        public UserDTO addNewUser(User newUser) {
+        return userMapper.mapToUserDTO(userRepository.findByUsername(newUser.getUsername()).get());
+    }
+
 }

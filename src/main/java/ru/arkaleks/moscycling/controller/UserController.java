@@ -35,16 +35,17 @@ public class UserController {
 
 
     /**
-     * Метод сохраняет или обновляет велодорожку CyclePath
+     * Метод сохраняет нового пользователя User
      *
      * @param
-     * @return CyclePath
+     * @return UserDTO
      * @throws
      */
-    @PutMapping("/users/adduser")
-    UserDTO saveOrUpdate(@RequestBody User newUser) {
-   //      userControlService.addNewUser(newUser);
-        return userControlService.saveWithUserRole(newUser);
+    @PutMapping("/users/addnewuser")
+    UserDTO addNewUser(@RequestBody User newUser) {
+        userControlService.saveUserWithoutUserRole(newUser);
+        userControlService.setUserRoleToUser(newUser);
+        return userControlService.addNewUser(newUser);
     }
 
 }
