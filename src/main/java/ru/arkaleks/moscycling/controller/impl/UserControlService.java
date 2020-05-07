@@ -57,10 +57,17 @@ public class UserControlService {
      * @throws
      */
     public void saveUserWithoutUserRole(User newUser) {
+        List<User> users = userRepository.findAll();
+        for (User user : users) {
+            if (user.getUsername().equals(newUser.getUsername())) {
+                throw new IllegalArgumentException("Sorry, User with Username = " + user.getUsername() + " is exists!");
+            }
+        }
         User addUser = new User(newUser.getUsername(), newUser.getPassword());
         addUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
         userRepository.save(addUser);
     }
+
 
     /**
      * Метод устанавливает роль UserRole для добавляемого  пользователя User
@@ -82,7 +89,7 @@ public class UserControlService {
      * @return UserDTO
      * @throws
      */
-        public UserDTO addNewUser(User newUser) {
+    public UserDTO addNewUser(User newUser) {
         return userMapper.mapToUserDTO(userRepository.findByUsername(newUser.getUsername()).get());
     }
 

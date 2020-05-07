@@ -75,7 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilterBefore(ajaxLoginFilter(), RememberMeAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/login*")
+                .antMatchers("/login*", "/error.html")
                 .permitAll()
                 .antMatchers("/editor.html", "/users.html")
                 .hasRole("ADMIN")
@@ -114,10 +114,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new MyHttp403ForbiddenEntryPoint();
     }
 
+
     @Bean
     public AbstractRememberMeServices rememberMeServices() {
-        PersistentTokenBasedRememberMeServices rememberMeServices =
-                new PersistentTokenBasedRememberMeServices(KEY, userService, persistentTokenRepository());
+        TokenBasedRememberMeServices rememberMeServices =
+                new TokenBasedRememberMeServices(KEY, userService);
         rememberMeServices.setAlwaysRemember(true);
         rememberMeServices.setCookieName("remember-me-posc");
         rememberMeServices.setTokenValiditySeconds(1209600);

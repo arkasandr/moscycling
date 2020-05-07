@@ -41,7 +41,8 @@ public class UserController {
      * @return UserDTO
      * @throws
      */
-    @PutMapping("/users/addnewuser")
+    @ResponseBody
+    @PostMapping("/users/addnewuser")
     UserDTO addNewUser(@RequestBody User newUser) {
         userControlService.saveUserWithoutUserRole(newUser);
         userControlService.setUserRoleToUser(newUser);

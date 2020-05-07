@@ -66,11 +66,12 @@ function searchAllUsersAjax() {
     });
 }
 
+
 function addNewUserAjax(json) {
     $.ajax({
         dataType: "json",
         contentType: "application/json; charset=utf-8",
-        type: "PUT",
+        type: "POST",
         url: "http://localhost:9090/users/addnewuser",
         data: json,
         timeout: 100000,
@@ -78,7 +79,11 @@ function addNewUserAjax(json) {
             console.log("SUCCESS: ", "ok222");
         },
         error: function () {
-            alert("Registration error");
+            // $('#users-add-btn').parent().append('<h1>ERROR!!</h1>');
+            alert("Username has been already exists!");
+            window.location = "http://localhost:9090/users.html";
+            event.preventDefault();
+
         },
         done: function (e) {
             console.log("DONE");
