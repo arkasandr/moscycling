@@ -27,6 +27,18 @@ jQuery(document).ready(function ($) {
         }
     });
 
+    $('#users-delete-form').submit(function (event) {
+        enableDeleteUserButton(false);
+        event.preventDefault();
+        deleteUserAjax();
+    });
+
+    $('#users-update-form').submit(function (event) {
+        enableUpdateUsernameButton(false);
+        event.preventDefault();
+        updateUsernameAjax();
+    });
+
 });
 
 function enableSearchAllUsersButton(flag) {
@@ -36,6 +48,15 @@ function enableSearchAllUsersButton(flag) {
 function enableAddNewUserButton(flag) {
     $('#users-add-btn').prop("disabled", flag);
 }
+
+function enableDeleteUserButton(flag) {
+    $('#users-delete-btn').prop("disabled", flag);
+}
+
+function enableUpdateUsernameButton(flag) {
+    $('#users-update-btn').prop("disabled", flag);
+}
+
 
 function displayToTableAllUsers(data) {
     $('tr:has(td)').remove();
@@ -57,7 +78,6 @@ function searchAllUsersAjax() {
         },
         error: function (e) {
             console.log("ERROR: ", e);
-            display(e);
         },
         done: function (e) {
             console.log("DONE");
@@ -77,17 +97,63 @@ function addNewUserAjax(json) {
         timeout: 100000,
         success: function () {
             console.log("SUCCESS: ", "ok222");
+            window.location = "http://localhost:9090/users.html";
         },
         error: function () {
-            // $('#users-add-btn').parent().append('<h1>ERROR!!</h1>');
-            alert("Username has been already exists!");
-            window.location = "http://localhost:9090/users.html";
+            $('#users-add-btn').parent().append('<p>Username has been already exists!</p>');
+            console.log("ERROR: ", e);
             event.preventDefault();
 
         },
         done: function (e) {
             console.log("DONE");
             enableAddNewUserButton(true);
+        }
+    });
+}
+
+
+function deleteUserAjax() {
+    $.ajax({
+        type: "DELETE",
+        url: "http://localhost:9090/users/" + document.getElementById('user-delete-id').value,
+        timeout: 100000,
+        success: function (data) {
+            console.log("SUCCESS: ", data);
+            window.location = "http://localhost:9090/users.html";
+        },
+        error: function (e) {
+            $('#users-delete-btn').parent().append('<p>User ID was not found!</p>');
+            console.log("ERROR: ", e);
+            event.preventDefault();
+        },
+        done: function (e) {
+            console.log("DONE");
+            enableDeleteUserButton(true);
+        }
+    });
+}
+
+
+function updateUsernameAjax() {
+    var newUsername = {username: document.getElementById('user-update-newusername').value}
+    $.ajax({
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        type: "PATCH",
+        url: "http://localhost:9090/users/" + document.getElementById('user-update-recentusername').value,
+        data: JSON.stringify(newUsername),
+        timeout: 100000,
+
+        success: function (newUsername) {
+            console.log("SUCCESS: ", newUsername);
+        },
+        error: function (e) {
+            console.log("ERROR: ", e);
+        },
+        done: function (e) {
+            console.log("DONE");
+            enableUpdateUsernameButton(true);
         }
     });
 }

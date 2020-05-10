@@ -11,9 +11,10 @@ import ru.arkaleks.moscycling.controller.mapper.UserMapper;
 import ru.arkaleks.moscycling.model.User;
 import ru.arkaleks.moscycling.model.UserRole;
 import ru.arkaleks.moscycling.repository.UserRepository;
-import ru.arkaleks.moscycling.repository.UserRoleRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -28,9 +29,6 @@ public class UserControlService {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private UserRoleRepository userRoleRepository;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -91,6 +89,45 @@ public class UserControlService {
      */
     public UserDTO addNewUser(User newUser) {
         return userMapper.mapToUserDTO(userRepository.findByUsername(newUser.getUsername()).get());
+    }
+
+    /**
+     * Метод удаляет пользователя User
+     *
+     * @param
+     * @return
+     * @throws
+     */
+    public void deleteUser(Integer id) {
+        List<User> users = userRepository.findAll();
+        List<Integer> usersId = new ArrayList<>();
+        for(User user : users) {
+            usersId.add(user.getId());
+        }
+        if(usersId.contains(id)) {
+            userRepository.deleteById(id);
+        } else {
+            throw new IllegalArgumentException("Sorry, no User ID = " + id + " was found!");
+        }
+    }
+
+    /**
+     * Метод обновляет поле username пользователя User
+     *
+     * @param
+     * @return UserDTO
+     * @throws IllegalArgumentException
+     */
+    public UserDTO updateUsername(Map<String, String> update, String usernameRecent) {
+        return userMapper.mapToUserDTO(userRepository.findByUsername(usernameRecent)
+                .map(x -> {
+                    String newUsername = update.get("username");
+                        x.setUsername(newUsername);
+                        return userRepository.save(x);
+                })
+                .orElseGet(() -> {
+                     throw new IllegalArgumentException("Sorry, no Username = " + usernameRecent + " was found!");
+                }));
     }
 
 }

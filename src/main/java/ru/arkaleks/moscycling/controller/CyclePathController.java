@@ -176,7 +176,6 @@ public class CyclePathController {
         cyclePathService.deleteCyclePath(globalId);
     }
 
-
     /**
      * Метод определяет длину велодорожки CyclePath
      *

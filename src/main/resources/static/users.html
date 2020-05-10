@@ -92,48 +92,6 @@
             </div>
         </div>
 
-        <!--<div class="row">-->
-            <!--<div class="col-md-10 offset-md-1">-->
-
-                <!--<div class="editor__patch">-->
-                    <!--<form class="form-horizontal" id="editor-patch-form">-->
-                        <!--<button id="editor-patch-number-btn" type="submit" class="btn btn-warning btn-sm">Change-->
-                            <!--Number-->
-                        <!--</button>-->
-                        <!--<input type="text" placeholder="Please enter new Number" class="editor__patch__input" required-->
-                               <!--id="editor-patch-change-number">-->
-                    <!--</form>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="row">-->
-            <!--<div class="col-md-10 offset-md-1">-->
-                <!--<table id="editor-coors" class="table table-bordered table-sm">-->
-                    <!--<thead>-->
-                    <!--<tr>-->
-                        <!--<th scope="col">Coordinate X</th>-->
-                        <!--<th scope="col">Coordinate Y</th>-->
-                    <!--</tr>-->
-                    <!--</thead>-->
-                <!--</table>-->
-
-                <!--<div class="editor__coors__search">-->
-                    <!--<form class="form-horizontal" id="editor-coors-search-form">-->
-                        <!--<button id="editor-getRouteCoors" type="submit" class="btn btn-secondary btn-sm">Find-->
-                            <!--Coordinates by ID-->
-                        <!--</button>-->
-                        <!--<input type="text" placeholder="Please enter Route ID"-->
-                               <!--class="editor__coors__search__form__input" required id="editor-coors-searching">-->
-                        <!--<small id="coorsHelpBlock" class="form-text">-->
-                            <!--Route ID must be 9 numbers long, and must not contain spaces, special characters, or emoji.-->
-                        <!--</small>-->
-                    <!--</form>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-
         <div class="row">
             <div class="col-md-10 offset-md-1">
                 <div class="users__add">
@@ -150,6 +108,39 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="users__update">
+                    <form class="form-horizontal" id="users-update-form">
+                        <button id="users-update-btn" type="submit" class="btn btn-secondary btn-sm"> Update Username
+                        </button>
+                        <input type="text" placeholder="Please enter Recent" class="users__update__input__recentusername" required
+                               id="user-update-recentusername">
+                        <input type="text" placeholder="Please enter New" class="users__update__input__newusername" required
+                               id="user-update-newusername">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="users__delete">
+                    <form class="form-horizontal" id="users-delete-form">
+                        <button id="users-delete-btn" type="submit" class="btn btn-danger btn-sm"> Delete User
+                        </button>
+                        <input type="text" placeholder="Please enter User ID" class="users__delete__input__id" required
+                               id="user-delete-id">
+                        <small id="deleteHelpBlock" class="form-text">
+                            This operation is non-return!
+                        </small>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 

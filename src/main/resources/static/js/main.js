@@ -323,30 +323,6 @@ function ajaxGetCoorsById() {
 }
 
 
-    function ajaxLogin() {
-        var username = {String: document.getElementById('username').value}
-        var password = {String: document.getElementById('password').value}
-        $.ajax({
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            type: "POST",
-            url: "http://localhost:9090/login",
-            data: JSON.stringify(username),
-            timeout: 100000,
-
-            success: function (username) {
-                console.log("SUCCESS: ", username);
-            },
-            error: function (e) {
-                console.log("ERROR: ", e);
-            },
-            done: function (e) {
-                console.log("DONE");
-                enableLoginButton(true);
-            }
-        });
-    }
-
 
 
 
